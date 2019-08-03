@@ -17,20 +17,22 @@ class MainViewController: UIViewController {
         initNavigation()
     }
 
+    //setup navigationBar
     func initNavigation() {
+
         navigationItem.title = "Currency"
         navigationController?.navigationBar.prefersLargeTitles = true
+
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(goToPreferences))
+        navigationItem.rightBarButtonItem = addButton
+        tabBarController?.tabBar.isHidden = false
     }
-    
 
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+}
+
+extension MainViewController {
+    @objc func goToPreferences() {
+        navigationController?.pushViewController(SettingsViewController(), animated: true)
     }
-    */
-
 }

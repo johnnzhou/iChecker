@@ -9,9 +9,9 @@
 import UIKit
 
 class NavigationController: UINavigationController {
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        navigationBar.barTintColor = .white
-    }
+//    override func viewDidLoad() {
+//        super.viewDidLoad()
+//        navigationBar.barTintColor = .white
+//    }
 
 }

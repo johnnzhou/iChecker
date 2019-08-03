@@ -20,6 +20,7 @@ class CalculatorViewController: UIViewController {
     func initNavigation() {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "Calculator"
+        tabBarController?.tabBar.isHidden = false
     }
     /*
     // MARK: - Navigation
