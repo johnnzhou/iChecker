@@ -17,6 +17,7 @@
 		0432422322F5848700EF097B /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0432422222F5848700EF097B /* TabBarController.swift */; };
 		0432422522F5849400EF097B /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0432422422F5849400EF097B /* NavigationController.swift */; };
 		0432422722F5CBB900EF097B /* settingsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0432422622F5CBB900EF097B /* settingsViewCell.swift */; };
+		0432422E22F5E96D00EF097B /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0432422D22F5E96D00EF097B /* MessageUI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		0432422222F5848700EF097B /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		0432422422F5849400EF097B /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		0432422622F5CBB900EF097B /* settingsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingsViewCell.swift; sourceTree = "<group>"; };
+		0432422D22F5E96D00EF097B /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0432422E22F5E96D00EF097B /* MessageUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -50,6 +53,7 @@
 			children = (
 				0432420322F57F5600EF097B /* iChecker */,
 				0432420222F57F5600EF097B /* Products */,
+				0432422C22F5E96C00EF097B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -109,6 +113,14 @@
 				0432420F22F57F5600EF097B /* LaunchScreen.storyboard */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		0432422C22F5E96C00EF097B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0432422D22F5E96D00EF097B /* MessageUI.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

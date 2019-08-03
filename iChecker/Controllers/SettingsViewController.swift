@@ -7,17 +7,52 @@
 //
 
 import UIKit
+import MessageUI
 import Foundation
 
-enum Section: Int {
+enum Section: Int, CaseIterable {
     case general = 0
     case about
 }
 
-class SettingsViewController: UITableViewController {
+enum About: Int, CaseIterable {
+    case Disclaimer = 0
+    case Feedback
+    case FAQ
+    case SpecialThanks
+    case AboutMe
 
-    var general: [String] = ["Notification", "Base Currency"]
-    var about: [String] = ["Disclaimer", "Feedback", "FAQ", "Special Thanks", "About"]
+    public var aboutString: String {
+        switch self {
+        case .Disclaimer:
+            return "Disclaimer"
+        case .Feedback:
+            return "Feedback"
+        case .FAQ:
+            return "FAQ"
+        case .SpecialThanks:
+            return "Special Thanks"
+        case .AboutMe:
+            return "About"
+        }
+    }
+}
+
+enum General: Int, CaseIterable {
+    case Notification = 0
+    case BaseCurrency
+
+    public var generalString: String {
+        switch self {
+        case .Notification:
+            return "Notification"
+        case .BaseCurrency:
+            return "Base Currency"
+        }
+    }
+}
+
+class SettingsViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,9 +92,9 @@ extension SettingsViewController {
 
         switch sec {
         case .general:
-            return general.count
+            return General.allCases.count
         case .about:
-            return about.count
+            return About.allCases.count
         }
 
     }
@@ -71,15 +106,11 @@ extension SettingsViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "settingsViewCell", for: indexPath)
         switch  sec {
         case .general:
-            cell.textLabel?.text = general[indexPath.row]
-            if indexPath.row == 1{
-                cell.accessoryType = .disclosureIndicator
-            } else {
-                
-            }
+            cell.textLabel?.text = General(rawValue: indexPath.row)?.generalString
+            cell.accessoryType = .disclosureIndicator
 
         case .about:
-            cell.textLabel?.text = about[indexPath.row]
+            cell.textLabel?.text = About(rawValue: indexPath.row)?.aboutString
             cell.accessoryType = .disclosureIndicator
         }
         return cell
@@ -92,9 +123,9 @@ extension SettingsViewController {
 
         switch  sec {
         case .general:
-            return "General"
+            return "GENERAl"
         case .about:
-            return "About"
+            return "ABOUT"
         }
     }
 
@@ -107,6 +138,45 @@ extension SettingsViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        guard let sec = Section(rawValue: indexPath.section) else {
+            fatalError("Unknow Section \(indexPath.section)")
+        }
+
+        switch sec {
+        case .general:
+            guard let row = General(rawValue: indexPath.row) else {
+                fatalError("Unknown Row \(indexPath.row)")
+            }
+
+            switch row {
+
+            case .Notification:
+                return
+            case .BaseCurrency:
+                return
+            }
+
+        case .about:
+            guard let row = About(rawValue: indexPath.row) else {
+                fatalError("Unknown Row \(indexPath.row)")
+            }
+
+            switch row {
+
+            case .Disclaimer:
+                return
+            case .Feedback:
+                 sendFeedBack()
+            case .FAQ:
+                return
+            case .SpecialThanks:
+                return
+            case .AboutMe:
+                return
+            }
+        }
+
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
@@ -121,5 +191,38 @@ extension SettingsViewController {
         case .about:
             return "Designed by John Zhou \n University of Washington"
         }
+    }
+}
+
+extension SettingsViewController: MFMailComposeViewControllerDelegate {
+
+    @objc func sendFeedBack() {
+        if MFMailComposeViewController.canSendMail() {
+            let vc = MFMailComposeViewController()
+            vc.mailComposeDelegate = self
+
+            // configure sender/recipient info
+            vc.setSubject("Feedback")
+            vc.setToRecipients(["zhouz46@uw.edu"])
+            vc.setMessageBody("Let me know what you think!", isHTML: false)
+            self.present(vc, animated: true, completion: nil)
+        } else {
+            let alert = UIAlertController(title: nil,
+                                          message: "Unable to send feedback as the default mail app is deleted.", preferredStyle: .actionSheet)
+            let goToAppStoreAction = UIAlertAction(title: "Install Mail App", style: .default) { _ in
+                if let url = URL(string: "itms-apps://https://apps.apple.com/us/app/mail/id1108187098") {
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                }
+            }
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            alert.addAction(goToAppStoreAction)
+            alert.addAction(cancelAction)
+            present(alert, animated: true, completion: nil)
+        }
+    }
+
+    // dismiss mailComposeViewController
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
     }
 }
