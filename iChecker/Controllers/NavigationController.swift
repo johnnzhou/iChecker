@@ -1,5 +1,5 @@
 //
-//  SecondViewController.swift
+//  NavigationController.swift
 //  iChecker
 //
 //  Created by JOHN ZZN on 8/3/19.
@@ -8,13 +8,10 @@
 
 import UIKit
 
-class SecondViewController: UIViewController {
-
+class NavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        navigationBar.barTintColor = .white
     }
 
-
 }
-
