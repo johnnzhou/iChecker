@@ -19,7 +19,7 @@ class SettingNotificationViewController: UITableViewController {
     let notificationSwitch = UISwitch()
     var scheduleNotification = [
         ExpandableTime(isExpanded: false, schedule: [
-            NotificationTime(time: "9:00", checked: false),
+            NotificationTime(time: "9:00", checked: true),
             NotificationTime(time: "12:00", checked: false),
             NotificationTime(time: "15:00", checked: false),
             NotificationTime(time: "18:00", checked: false)
@@ -79,6 +79,32 @@ extension SettingNotificationViewController {
         return cell
     }
 
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        guard let sec = NotificationSection(rawValue: section) else {
+            fatalError("Unknown Section \(section)")
+        }
+
+        switch sec {
+        case .notification:
+            return "SCHEDULE NOTIFICATIONS"
+        case .time:
+            return ""
+        }
+    }
+
+    override func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        guard let sec = NotificationSection(rawValue: section) else {
+            fatalError("Unknown Section \(section)")
+        }
+
+        switch sec {
+        case .notification:
+            return "Notifications will be scheduled on the selected times during weekdays. The scheduled time are displayed in 24-HOUR time"
+        case .time:
+            return ""
+        }
+    }
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let sec = NotificationSection(rawValue: indexPath.section) else {
             fatalError("Unknown Setion or Row: setion:\(indexPath.section), row: \(indexPath.row)")
@@ -92,7 +118,15 @@ extension SettingNotificationViewController {
             let time = scheduleNotification[0].schedule[indexPath.row]
             scheduleNotification[0].schedule[indexPath.row].checked = !time.checked
             tableView.cellForRow(at: indexPath)?.accessoryType = !time.checked ? .checkmark : .none
+            let safetyCheck = scheduleNotification[0].schedule.filter {$0.checked == true}
+            if safetyCheck.count == 0 {
+                notificationSwitch.isOn = false
+                isNotificationOn = false
+                scheduleNotification[0].isExpanded = false
 
+                // set schedule notification back to default
+                scheduleNotification[0].schedule[0].checked = true
+            }
         }
         tableView.deselectRow(at: indexPath, animated: true)
         tableView.reloadData()
