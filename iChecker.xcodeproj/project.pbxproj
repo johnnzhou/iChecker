@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0410A80422F6884F00678085 /* SettingNotificationViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0410A80322F6884F00678085 /* SettingNotificationViewCell.swift */; };
+		0410A80622F688C600678085 /* SettingNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0410A80522F688C600678085 /* SettingNotificationViewController.swift */; };
+		0410A80822F696B700678085 /* NotificationTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0410A80722F696B700678085 /* NotificationTime.swift */; };
+		0410A80A22F6B30D00678085 /* ExpandableTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0410A80922F6B30D00678085 /* ExpandableTime.swift */; };
 		0432420522F57F5600EF097B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0432420422F57F5600EF097B /* AppDelegate.swift */; };
 		0432420C22F57F5600EF097B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0432420A22F57F5600EF097B /* Main.storyboard */; };
 		0432420E22F57F5600EF097B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0432420D22F57F5600EF097B /* Assets.xcassets */; };
@@ -21,6 +25,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0410A80322F6884F00678085 /* SettingNotificationViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingNotificationViewCell.swift; sourceTree = "<group>"; };
+		0410A80522F688C600678085 /* SettingNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingNotificationViewController.swift; sourceTree = "<group>"; };
+		0410A80722F696B700678085 /* NotificationTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTime.swift; sourceTree = "<group>"; };
+		0410A80922F6B30D00678085 /* ExpandableTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableTime.swift; sourceTree = "<group>"; };
 		0432420122F57F5600EF097B /* iChecker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iChecker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0432420422F57F5600EF097B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0432420B22F57F5600EF097B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -81,6 +89,8 @@
 		0432421822F57FC300EF097B /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				0410A80722F696B700678085 /* NotificationTime.swift */,
+				0410A80922F6B30D00678085 /* ExpandableTime.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -89,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				0432422622F5CBB900EF097B /* settingsViewCell.swift */,
+				0410A80322F6884F00678085 /* SettingNotificationViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -101,6 +112,7 @@
 				0432422022F5800C00EF097B /* SettingsViewController.swift */,
 				0432422222F5848700EF097B /* TabBarController.swift */,
 				0432422422F5849400EF097B /* NavigationController.swift */,
+				0410A80522F688C600678085 /* SettingNotificationViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -198,9 +210,13 @@
 				0432422522F5849400EF097B /* NavigationController.swift in Sources */,
 				0432421F22F5800300EF097B /* CalculatorViewController.swift in Sources */,
 				0432421D22F57FF500EF097B /* MainViewController.swift in Sources */,
+				0410A80422F6884F00678085 /* SettingNotificationViewCell.swift in Sources */,
 				0432422722F5CBB900EF097B /* settingsViewCell.swift in Sources */,
+				0410A80A22F6B30D00678085 /* ExpandableTime.swift in Sources */,
 				0432422322F5848700EF097B /* TabBarController.swift in Sources */,
+				0410A80622F688C600678085 /* SettingNotificationViewController.swift in Sources */,
 				0432422122F5800C00EF097B /* SettingsViewController.swift in Sources */,
+				0410A80822F696B700678085 /* NotificationTime.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,6 +365,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J2Y8RGS558;
 				INFOPLIST_FILE = iChecker/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -367,6 +384,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = J2Y8RGS558;
 				INFOPLIST_FILE = iChecker/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

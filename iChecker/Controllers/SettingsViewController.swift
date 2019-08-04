@@ -152,7 +152,8 @@ extension SettingsViewController {
             switch row {
 
             case .Notification:
-                return
+                let vc = SettingNotificationViewController()
+                navigationController?.pushViewController(vc, animated: true)
             case .BaseCurrency:
                 return
             }

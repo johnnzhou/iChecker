@@ -23,12 +23,21 @@ class MainViewController: UIViewController {
         navigationItem.title = "Currency"
         navigationController?.navigationBar.prefersLargeTitles = true
 
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(goToPreferences))
-        navigationItem.rightBarButtonItem = addButton
+        let settingButtonImage = UIImage(named: "settings.png")?.withRenderingMode(.alwaysOriginal)
+        let settingButton = UIButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+        settingButton.setBackgroundImage(settingButtonImage, for: .normal)
+        settingButton.addTarget(self, action: #selector(goToPreferences), for: .touchUpInside)
+        settingButton.isUserInteractionEnabled = true
+
+        settingButton.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            settingButton.widthAnchor.constraint(equalToConstant: 20),
+            settingButton.heightAnchor.constraint(equalToConstant: 20)
+        ])
+
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: settingButton)
         tabBarController?.tabBar.isHidden = false
     }
-
-
 }
 
 extension MainViewController {
