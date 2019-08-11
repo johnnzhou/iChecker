@@ -20,14 +20,14 @@ class TabBarController: UITabBarController {
             case .main:
                 return UITabBarItem(
                     title: "Main",
-                    image: #imageLiteral(resourceName: "addMore").withRenderingMode(.alwaysOriginal),
-                    selectedImage: #imageLiteral(resourceName: "addMore").withRenderingMode(.alwaysOriginal)
+                    image: #imageLiteral(resourceName: "dollar-dark").withRenderingMode(.alwaysOriginal),
+                    selectedImage: #imageLiteral(resourceName: "dollar-light").withRenderingMode(.alwaysOriginal)
                 )
             case .calculator:
                 return UITabBarItem(
                     title: "Calculator",
-                    image: #imageLiteral(resourceName: "leftArrow").withRenderingMode(.alwaysOriginal),
-                    selectedImage: #imageLiteral(resourceName: "leftArrow").withRenderingMode(.alwaysOriginal)
+                    image: #imageLiteral(resourceName: "calc-light").withRenderingMode(.alwaysOriginal),
+                    selectedImage: #imageLiteral(resourceName: "calc-dark").withRenderingMode(.alwaysOriginal)
                 )
             }
         }

@@ -13,6 +13,7 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        view.backgroundColor = UIColor.white
         // Do any additional setup after loading the view.
         initNavigation()
     }
@@ -42,6 +43,8 @@ class MainViewController: UIViewController {
 
 extension MainViewController {
     @objc func goToPreferences() {
-        navigationController?.pushViewController(SettingsViewController(), animated: true)
+        let vc = SettingsViewController()
+        let navVC = UINavigationController(rootViewController: vc)
+        present(navVC, animated: true, completion: nil)
     }
 }

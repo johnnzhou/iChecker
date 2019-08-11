@@ -58,6 +58,10 @@ class SettingsViewController: UITableViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dismissView))
+
+        navigationItem.hidesBackButton = true
+
         initTableView()
         initNavigation()
         initTableViewCell()
@@ -70,12 +74,10 @@ class SettingsViewController: UITableViewController {
     func initNavigation() {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.title = "Preferenecs"
-//        tabBarController?.tabBar.isHidden = true
     }
 
     func initTableViewCell() {
         tableView.register(settingsViewCell.self, forCellReuseIdentifier: "\(settingsViewCell.self)")
-
     }
 }
 
@@ -155,7 +157,9 @@ extension SettingsViewController {
                 let vc = SettingNotificationViewController()
                 navigationController?.pushViewController(vc, animated: true)
             case .BaseCurrency:
-                return
+                let vc = BaseCurrencyViewController()
+                vc.modalPresentationStyle = .overFullScreen
+                present(vc, animated: true, completion: nil)
             }
 
         case .about:
@@ -166,7 +170,8 @@ extension SettingsViewController {
             switch row {
 
             case .Disclaimer:
-                return
+                let vc = DisclaimerViewController()
+                navigationController?.pushViewController(vc, animated: true)
             case .Feedback:
                  sendFeedBack()
             case .FAQ:
@@ -225,5 +230,13 @@ extension SettingsViewController: MFMailComposeViewControllerDelegate {
     // dismiss mailComposeViewController
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         controller.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension SettingsViewController {
+
+    // dismiss settingviewcontroller
+    @objc func dismissView() {
+        dismiss(animated: true, completion: nil)
     }
 }

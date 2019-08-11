@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -22,6 +22,10 @@
 		0432422522F5849400EF097B /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0432422422F5849400EF097B /* NavigationController.swift */; };
 		0432422722F5CBB900EF097B /* settingsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0432422622F5CBB900EF097B /* settingsViewCell.swift */; };
 		0432422E22F5E96D00EF097B /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0432422D22F5E96D00EF097B /* MessageUI.framework */; };
+		045F6C3A22F9C5FB00FAC30E /* BaseCurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045F6C3922F9C5FB00FAC30E /* BaseCurrencyViewController.swift */; };
+		04CCBC2D2300089700675350 /* BaseCurrencyPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CCBC2C2300089700675350 /* BaseCurrencyPickerView.swift */; };
+		04CCBC2F23003AB000675350 /* DisclaimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CCBC2E23003AB000675350 /* DisclaimerViewController.swift */; };
+		D9EDD029564AAD59C49A6F62 /* Pods_iChecker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D513236A9FA649DD90853078 /* Pods_iChecker.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,10 +42,16 @@
 		0432421C22F57FF500EF097B /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		0432421E22F5800300EF097B /* CalculatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorViewController.swift; sourceTree = "<group>"; };
 		0432422022F5800C00EF097B /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		0432422222F5848700EF097B /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		0432422222F5848700EF097B /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; tabWidth = 3; };
 		0432422422F5849400EF097B /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		0432422622F5CBB900EF097B /* settingsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingsViewCell.swift; sourceTree = "<group>"; };
 		0432422D22F5E96D00EF097B /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		045F6C3922F9C5FB00FAC30E /* BaseCurrencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCurrencyViewController.swift; sourceTree = "<group>"; };
+		04CCBC2C2300089700675350 /* BaseCurrencyPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCurrencyPickerView.swift; sourceTree = "<group>"; };
+		04CCBC2E23003AB000675350 /* DisclaimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisclaimerViewController.swift; sourceTree = "<group>"; };
+		96FEA3481F9052A2F6737F57 /* Pods-iChecker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iChecker.debug.xcconfig"; path = "Target Support Files/Pods-iChecker/Pods-iChecker.debug.xcconfig"; sourceTree = "<group>"; };
+		AB8C08FFC25BA652CD610DCC /* Pods-iChecker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iChecker.release.xcconfig"; path = "Target Support Files/Pods-iChecker/Pods-iChecker.release.xcconfig"; sourceTree = "<group>"; };
+		D513236A9FA649DD90853078 /* Pods_iChecker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iChecker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +60,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0432422E22F5E96D00EF097B /* MessageUI.framework in Frameworks */,
+				D9EDD029564AAD59C49A6F62 /* Pods_iChecker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,6 +73,7 @@
 				0432420322F57F5600EF097B /* iChecker */,
 				0432420222F57F5600EF097B /* Products */,
 				0432422C22F5E96C00EF097B /* Frameworks */,
+				4F7FF25CCCBDBA5829B46549 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -100,6 +112,7 @@
 			children = (
 				0432422622F5CBB900EF097B /* settingsViewCell.swift */,
 				0410A80322F6884F00678085 /* SettingNotificationViewCell.swift */,
+				04CCBC2C2300089700675350 /* BaseCurrencyPickerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -113,6 +126,8 @@
 				0432422222F5848700EF097B /* TabBarController.swift */,
 				0432422422F5849400EF097B /* NavigationController.swift */,
 				0410A80522F688C600678085 /* SettingNotificationViewController.swift */,
+				045F6C3922F9C5FB00FAC30E /* BaseCurrencyViewController.swift */,
+				04CCBC2E23003AB000675350 /* DisclaimerViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -131,8 +146,18 @@
 			isa = PBXGroup;
 			children = (
 				0432422D22F5E96D00EF097B /* MessageUI.framework */,
+				D513236A9FA649DD90853078 /* Pods_iChecker.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4F7FF25CCCBDBA5829B46549 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				96FEA3481F9052A2F6737F57 /* Pods-iChecker.debug.xcconfig */,
+				AB8C08FFC25BA652CD610DCC /* Pods-iChecker.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -142,9 +167,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0432421522F57F5600EF097B /* Build configuration list for PBXNativeTarget "iChecker" */;
 			buildPhases = (
+				AF4C6E444012F8122623BAF1 /* [CP] Check Pods Manifest.lock */,
 				043241FD22F57F5600EF097B /* Sources */,
 				043241FE22F57F5600EF097B /* Frameworks */,
 				043241FF22F57F5600EF097B /* Resources */,
+				0E4184C7BA87F9D28676568E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -201,6 +228,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0E4184C7BA87F9D28676568E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iChecker/Pods-iChecker-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-iChecker/Pods-iChecker-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iChecker/Pods-iChecker-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AF4C6E444012F8122623BAF1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-iChecker-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		043241FD22F57F5600EF097B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -209,10 +278,13 @@
 				0432420522F57F5600EF097B /* AppDelegate.swift in Sources */,
 				0432422522F5849400EF097B /* NavigationController.swift in Sources */,
 				0432421F22F5800300EF097B /* CalculatorViewController.swift in Sources */,
+				04CCBC2D2300089700675350 /* BaseCurrencyPickerView.swift in Sources */,
 				0432421D22F57FF500EF097B /* MainViewController.swift in Sources */,
+				045F6C3A22F9C5FB00FAC30E /* BaseCurrencyViewController.swift in Sources */,
 				0410A80422F6884F00678085 /* SettingNotificationViewCell.swift in Sources */,
 				0432422722F5CBB900EF097B /* settingsViewCell.swift in Sources */,
 				0410A80A22F6B30D00678085 /* ExpandableTime.swift in Sources */,
+				04CCBC2F23003AB000675350 /* DisclaimerViewController.swift in Sources */,
 				0432422322F5848700EF097B /* TabBarController.swift in Sources */,
 				0410A80622F688C600678085 /* SettingNotificationViewController.swift in Sources */,
 				0432422122F5800C00EF097B /* SettingsViewController.swift in Sources */,
@@ -360,6 +432,7 @@
 		};
 		0432421622F57F5600EF097B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 96FEA3481F9052A2F6737F57 /* Pods-iChecker.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -379,6 +452,7 @@
 		};
 		0432421722F57F5600EF097B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AB8C08FFC25BA652CD610DCC /* Pods-iChecker.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
