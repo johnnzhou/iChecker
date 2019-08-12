@@ -17,6 +17,70 @@ class CalculatorViewController: UIViewController {
 
     @IBOutlet weak var firstImageView: UIImageView!
     @IBOutlet weak var secondImageView: UIImageView!
+    var eval: String? = nil
+//     calculator
+
+//    @IBAction func onePressed(_ sender: UIButton) {
+//        eval?.append("1")
+//    }
+//
+//    @IBAction func twoPressed(_ sender: UIButton) {
+//        eval?.append("2")
+//    }
+//
+//    @IBAction func threePressed(_ sender: UIButton) {
+//        eval?.append("3")
+//    }
+//
+//    @IBAction func fourPressed(_ sender: UIButton) {
+//        eval?.append("4")
+//    }
+//
+//    @IBAction func fivePressed(_ sender: UIButton) {
+//        eval?.append("5")
+//    }
+//
+//    @IBAction func sixPressed(_ sender: UIButton) {
+//        eval?.append("6")
+//    }
+//
+//    @IBAction func sevenPressed(_ sender: UIButton) {
+//        eval?.append("7")
+//    }
+//
+//    @IBAction func eightPressed(_ sender: UIButton) {
+//        eval?.append("8")
+//    }
+//
+//    @IBAction func ninePressed(_ sender: UIButton) {
+//        eval?.append("9")
+//    }
+//
+//    @IBAction func zeroPressed(_ sender: UIButton) {
+//        eval?.append("0")
+//    }
+//
+//    @IBAction func additionPressed(_ sender: UIButton) {
+//        eval?.append(" + ")
+//    }
+//
+//    @IBAction func subtractionPressed(_ sender: UIButton) {
+//        eval?.append(" - ")
+//    }
+//
+//    @IBAction func multiplicationPressed(_ sender: UIButton) {
+//        eval?.append(" * ")
+//    }
+//
+//    @IBAction func divisionPressed(_ sender: UIButton) {
+//        eval?.append(" / ")
+//    }
+//
+//
+//    @IBAction func deletionPressed(_ sender: UIButton) {
+//        eval?.removeLast()
+//    }
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,9 +108,14 @@ class CalculatorViewController: UIViewController {
 
 extension CalculatorViewController {
     @objc func firstContainerTapped() {
+//        firstTextField.text = eval
         let numberInput = ((firstTextField.text ?? "100") as NSString).doubleValue
         secondResultantLabel.text = String(numberInput * 7)
-
     }
 }
+
+// calculator evaluation
+//extension CalculatorViewController {
+//
+//}
 
