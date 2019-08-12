@@ -177,9 +177,11 @@ extension SettingsViewController {
             case .FAQ:
                 return
             case .SpecialThanks:
-                return
+                let vc = SpecialThanksViewController()
+                navigationController?.pushViewController(vc, animated: true)
             case .AboutMe:
-                return
+                let vc = AboutViewController()
+                navigationController?.pushViewController(vc, animated: true)
             }
         }
 
