@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		040FACEA2302BBCD00ABB99F /* MainCurrencyViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040FACE82302BBCD00ABB99F /* MainCurrencyViewCell.swift */; };
+		040FACEB2302BBCD00ABB99F /* MainCurrencyViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 040FACE92302BBCD00ABB99F /* MainCurrencyViewCell.xib */; };
 		0410A80422F6884F00678085 /* SettingNotificationViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0410A80322F6884F00678085 /* SettingNotificationViewCell.swift */; };
 		0410A80622F688C600678085 /* SettingNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0410A80522F688C600678085 /* SettingNotificationViewController.swift */; };
 		0410A80822F696B700678085 /* NotificationTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0410A80722F696B700678085 /* NotificationTime.swift */; };
@@ -32,6 +34,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		040FACE82302BBCD00ABB99F /* MainCurrencyViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCurrencyViewCell.swift; sourceTree = "<group>"; };
+		040FACE92302BBCD00ABB99F /* MainCurrencyViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainCurrencyViewCell.xib; sourceTree = "<group>"; };
 		0410A80322F6884F00678085 /* SettingNotificationViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingNotificationViewCell.swift; sourceTree = "<group>"; };
 		0410A80522F688C600678085 /* SettingNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingNotificationViewController.swift; sourceTree = "<group>"; };
 		0410A80722F696B700678085 /* NotificationTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTime.swift; sourceTree = "<group>"; };
@@ -73,6 +77,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		040FACEC2302BBD200ABB99F /* MainCurrencyViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				040FACE92302BBCD00ABB99F /* MainCurrencyViewCell.xib */,
+				040FACE82302BBCD00ABB99F /* MainCurrencyViewCell.swift */,
+			);
+			path = MainCurrencyViewCell;
+			sourceTree = "<group>";
+		};
 		043241F822F57F5600EF097B = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +134,7 @@
 				0410A80322F6884F00678085 /* SettingNotificationViewCell.swift */,
 				04CCBC2C2300089700675350 /* BaseCurrencyPickerView.swift */,
 				04CCBC392300685100675350 /* CalculatorCurrenciesViewCell.swift */,
+				040FACEC2302BBD200ABB99F /* MainCurrencyViewCell */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -237,6 +251,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				040FACEB2302BBCD00ABB99F /* MainCurrencyViewCell.xib in Resources */,
 				0432421122F57F5600EF097B /* LaunchScreen.storyboard in Resources */,
 				0432420E22F57F5600EF097B /* Assets.xcassets in Resources */,
 				0432420C22F57F5600EF097B /* Main.storyboard in Resources */,
@@ -300,6 +315,7 @@
 				0432421D22F57FF500EF097B /* MainViewController.swift in Sources */,
 				045F6C3A22F9C5FB00FAC30E /* BaseCurrencyViewController.swift in Sources */,
 				0410A80422F6884F00678085 /* SettingNotificationViewCell.swift in Sources */,
+				040FACEA2302BBCD00ABB99F /* MainCurrencyViewCell.swift in Sources */,
 				0432422722F5CBB900EF097B /* settingsViewCell.swift in Sources */,
 				0410A80A22F6B30D00678085 /* ExpandableTime.swift in Sources */,
 				04CCBC2F23003AB000675350 /* DisclaimerViewController.swift in Sources */,
