@@ -7,5 +7,6 @@ target 'iChecker' do
 
   # Pods for iChecker
     pod 'Hero'
+    pod 'Charts'
 
 end

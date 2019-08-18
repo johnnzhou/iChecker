@@ -17,9 +17,9 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         view.backgroundColor = UIColor.white
         currencyTableView.delegate = self
         currencyTableView.dataSource = self
-        // Do any additional setup after loading the view.
-        currencyTableView.register(UINib(nibName: "MainCurrencyViewCell", bundle: nil), forCellReuseIdentifier: "MainCurrencyViewCell")
-//        currencyTableView.separatorStyle = .none
+        currencyTableView.register(MainViewCell.self, forCellReuseIdentifier: "\(MainViewCell.self)")
+
+        currencyTableView.separatorStyle = .none
 
         initNavigation()
         configerTableView()
@@ -67,31 +67,28 @@ extension MainViewController {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = currencyTableView.dequeueReusableCell(withIdentifier: "MainCurrencyViewCell", for: indexPath) as! MainCurrencyViewCell
-        cell.currencyIcon.image = "🇭🇰".image()
-        cell.currencyName.text = "HKD"
-        cell.currencyRate.text = "7.89"
-        cell.dailyHigh.text = "1"
-        cell.dailyLow.text = "0"
-
-        cell.layer.cornerRadius = 10
-        cell.layer.shadowColor = UIColor.gray.cgColor
-        cell.layer.shadowOffset = CGSize.zero
-        cell.layer.shadowOpacity = 0.3
-        cell.layer.shadowRadius = 7.0
-        cell.layer.masksToBounds =  false
-
-        
-
+        let cell = currencyTableView.dequeueReusableCell(withIdentifier: "MainViewCell", for: indexPath) as! MainViewCell
+        cell.delegate = self
+        cell.translatesAutoresizingMaskIntoConstraints = false
+        cell.flag.image = "🏴󠁧󠁢󠁥󠁮󠁧󠁿".image()
+        cell.backgroundColor = .clear
+        cell.selectionStyle = .none
         return cell
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
+        return 150
     }
 
     func configerTableView() {
         currencyTableView.rowHeight = UITableView.automaticDimension
-        currencyTableView.estimatedRowHeight = 340
+        currencyTableView.estimatedRowHeight = 200
+    }
+}
+
+extension MainViewController: MainViewCellDelegate {
+    func handleInfoButtonPressed(sender: MainViewCell) {
+        let vc = SubMainViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
 }

@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		040FACEA2302BBCD00ABB99F /* MainCurrencyViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 040FACE82302BBCD00ABB99F /* MainCurrencyViewCell.swift */; };
-		040FACEB2302BBCD00ABB99F /* MainCurrencyViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 040FACE92302BBCD00ABB99F /* MainCurrencyViewCell.xib */; };
 		0410A80422F6884F00678085 /* SettingNotificationViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0410A80322F6884F00678085 /* SettingNotificationViewCell.swift */; };
 		0410A80622F688C600678085 /* SettingNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0410A80522F688C600678085 /* SettingNotificationViewController.swift */; };
 		0410A80822F696B700678085 /* NotificationTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0410A80722F696B700678085 /* NotificationTime.swift */; };
@@ -23,6 +21,8 @@
 		0432422322F5848700EF097B /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0432422222F5848700EF097B /* TabBarController.swift */; };
 		0432422722F5CBB900EF097B /* settingsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0432422622F5CBB900EF097B /* settingsViewCell.swift */; };
 		0432422E22F5E96D00EF097B /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0432422D22F5E96D00EF097B /* MessageUI.framework */; };
+		0451102F2307DFB9005E8A75 /* SubMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0451102E2307DFB9005E8A75 /* SubMainViewController.swift */; };
+		0458BCC82303C783009540FF /* MainViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0458BCC72303C783009540FF /* MainViewCell.swift */; };
 		045F6C3A22F9C5FB00FAC30E /* BaseCurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045F6C3922F9C5FB00FAC30E /* BaseCurrencyViewController.swift */; };
 		04CCBC2D2300089700675350 /* BaseCurrencyPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CCBC2C2300089700675350 /* BaseCurrencyPickerView.swift */; };
 		04CCBC2F23003AB000675350 /* DisclaimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CCBC2E23003AB000675350 /* DisclaimerViewController.swift */; };
@@ -30,12 +30,12 @@
 		04CCBC332300489E00675350 /* SpecialThanksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CCBC322300489E00675350 /* SpecialThanksViewController.swift */; };
 		04CCBC3823005EAD00675350 /* String+iChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CCBC3723005EAD00675350 /* String+iChecker.swift */; };
 		04CCBC3A2300685100675350 /* CalculatorCurrenciesViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CCBC392300685100675350 /* CalculatorCurrenciesViewCell.swift */; };
+		04FBE4222307F85800F44CEA /* GraphViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FBE4212307F85800F44CEA /* GraphViewCell.swift */; };
+		04FBE4242307F86D00F44CEA /* HistoricalDataViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FBE4232307F86D00F44CEA /* HistoricalDataViewCell.swift */; };
 		D9EDD029564AAD59C49A6F62 /* Pods_iChecker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D513236A9FA649DD90853078 /* Pods_iChecker.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		040FACE82302BBCD00ABB99F /* MainCurrencyViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCurrencyViewCell.swift; sourceTree = "<group>"; };
-		040FACE92302BBCD00ABB99F /* MainCurrencyViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainCurrencyViewCell.xib; sourceTree = "<group>"; };
 		0410A80322F6884F00678085 /* SettingNotificationViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingNotificationViewCell.swift; sourceTree = "<group>"; };
 		0410A80522F688C600678085 /* SettingNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingNotificationViewController.swift; sourceTree = "<group>"; };
 		0410A80722F696B700678085 /* NotificationTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTime.swift; sourceTree = "<group>"; };
@@ -52,6 +52,8 @@
 		0432422222F5848700EF097B /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; tabWidth = 3; };
 		0432422622F5CBB900EF097B /* settingsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = settingsViewCell.swift; sourceTree = "<group>"; };
 		0432422D22F5E96D00EF097B /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		0451102E2307DFB9005E8A75 /* SubMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubMainViewController.swift; sourceTree = "<group>"; };
+		0458BCC72303C783009540FF /* MainViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewCell.swift; sourceTree = "<group>"; };
 		045F6C3922F9C5FB00FAC30E /* BaseCurrencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCurrencyViewController.swift; sourceTree = "<group>"; };
 		04CCBC2C2300089700675350 /* BaseCurrencyPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCurrencyPickerView.swift; sourceTree = "<group>"; };
 		04CCBC2E23003AB000675350 /* DisclaimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisclaimerViewController.swift; sourceTree = "<group>"; };
@@ -59,6 +61,8 @@
 		04CCBC322300489E00675350 /* SpecialThanksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialThanksViewController.swift; sourceTree = "<group>"; };
 		04CCBC3723005EAD00675350 /* String+iChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+iChecker.swift"; sourceTree = "<group>"; };
 		04CCBC392300685100675350 /* CalculatorCurrenciesViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorCurrenciesViewCell.swift; sourceTree = "<group>"; };
+		04FBE4212307F85800F44CEA /* GraphViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewCell.swift; sourceTree = "<group>"; };
+		04FBE4232307F86D00F44CEA /* HistoricalDataViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalDataViewCell.swift; sourceTree = "<group>"; };
 		96FEA3481F9052A2F6737F57 /* Pods-iChecker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iChecker.debug.xcconfig"; path = "Target Support Files/Pods-iChecker/Pods-iChecker.debug.xcconfig"; sourceTree = "<group>"; };
 		AB8C08FFC25BA652CD610DCC /* Pods-iChecker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iChecker.release.xcconfig"; path = "Target Support Files/Pods-iChecker/Pods-iChecker.release.xcconfig"; sourceTree = "<group>"; };
 		D513236A9FA649DD90853078 /* Pods_iChecker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iChecker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -77,15 +81,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		040FACEC2302BBD200ABB99F /* MainCurrencyViewCell */ = {
-			isa = PBXGroup;
-			children = (
-				040FACE92302BBCD00ABB99F /* MainCurrencyViewCell.xib */,
-				040FACE82302BBCD00ABB99F /* MainCurrencyViewCell.swift */,
-			);
-			path = MainCurrencyViewCell;
-			sourceTree = "<group>";
-		};
 		043241F822F57F5600EF097B = {
 			isa = PBXGroup;
 			children = (
@@ -134,7 +129,9 @@
 				0410A80322F6884F00678085 /* SettingNotificationViewCell.swift */,
 				04CCBC2C2300089700675350 /* BaseCurrencyPickerView.swift */,
 				04CCBC392300685100675350 /* CalculatorCurrenciesViewCell.swift */,
-				040FACEC2302BBD200ABB99F /* MainCurrencyViewCell */,
+				0458BCC72303C783009540FF /* MainViewCell.swift */,
+				04FBE4212307F85800F44CEA /* GraphViewCell.swift */,
+				04FBE4232307F86D00F44CEA /* HistoricalDataViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -151,6 +148,7 @@
 				04CCBC2E23003AB000675350 /* DisclaimerViewController.swift */,
 				04CCBC302300477E00675350 /* AboutViewController.swift */,
 				04CCBC322300489E00675350 /* SpecialThanksViewController.swift */,
+				0451102E2307DFB9005E8A75 /* SubMainViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -251,7 +249,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				040FACEB2302BBCD00ABB99F /* MainCurrencyViewCell.xib in Resources */,
 				0432421122F57F5600EF097B /* LaunchScreen.storyboard in Resources */,
 				0432420E22F57F5600EF097B /* Assets.xcassets in Resources */,
 				0432420C22F57F5600EF097B /* Main.storyboard in Resources */,
@@ -314,17 +311,20 @@
 				04CCBC2D2300089700675350 /* BaseCurrencyPickerView.swift in Sources */,
 				0432421D22F57FF500EF097B /* MainViewController.swift in Sources */,
 				045F6C3A22F9C5FB00FAC30E /* BaseCurrencyViewController.swift in Sources */,
+				04FBE4222307F85800F44CEA /* GraphViewCell.swift in Sources */,
 				0410A80422F6884F00678085 /* SettingNotificationViewCell.swift in Sources */,
-				040FACEA2302BBCD00ABB99F /* MainCurrencyViewCell.swift in Sources */,
 				0432422722F5CBB900EF097B /* settingsViewCell.swift in Sources */,
+				0458BCC82303C783009540FF /* MainViewCell.swift in Sources */,
 				0410A80A22F6B30D00678085 /* ExpandableTime.swift in Sources */,
 				04CCBC2F23003AB000675350 /* DisclaimerViewController.swift in Sources */,
 				0432422322F5848700EF097B /* TabBarController.swift in Sources */,
 				0410A80622F688C600678085 /* SettingNotificationViewController.swift in Sources */,
 				0432422122F5800C00EF097B /* SettingsViewController.swift in Sources */,
+				04FBE4242307F86D00F44CEA /* HistoricalDataViewCell.swift in Sources */,
 				0410A80822F696B700678085 /* NotificationTime.swift in Sources */,
 				04CCBC3823005EAD00675350 /* String+iChecker.swift in Sources */,
 				04CCBC332300489E00675350 /* SpecialThanksViewController.swift in Sources */,
+				0451102F2307DFB9005E8A75 /* SubMainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
