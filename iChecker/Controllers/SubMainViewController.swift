@@ -17,6 +17,7 @@ enum Sections: Int, CaseIterable {
 
 class SubMainViewController: UIViewController {
 
+    var dayRange: Int = 7
     let rates = [7.0429,
                  7.0429,
                  7.0339,
@@ -123,10 +124,10 @@ extension SubMainViewController: UICollectionViewDataSource {
             return cell
         case .graph:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(GraphViewCell.self)", for: indexPath) as! GraphViewCell
-
+            cell.delegate = self
             var lineChartEntry = [ChartDataEntry]()
-            for i in 0..<rates.count {
-                let value = ChartDataEntry(x: Double(i), y: rates[rates.count - 1 - i])
+            for i in 0..<dayRange {
+                let value = ChartDataEntry(x: Double(i), y: rates[dayRange - 1 - i])
                 lineChartEntry.append(value)
             }
 
@@ -136,16 +137,19 @@ extension SubMainViewController: UICollectionViewDataSource {
             dataSet.lineWidth = 1.8
             dataSet.circleRadius = 4
             dataSet.setCircleColor(.white)
-            dataSet.highlightColor = UIColor(red: 244/255, green: 117/255, blue: 117/255, alpha: 1)
-            dataSet.fillColor = .white
+            let gradient = [ChartColorTemplates.colorFromString("#DBEBC2").cgColor,
+                            ChartColorTemplates.colorFromString("#ACDBC9").cgColor]
+            let gradientColor = CGGradient(colorsSpace: nil, colors: gradient as CFArray, locations: nil)!
             dataSet.fillAlpha = 1
+            dataSet.fill = Fill(linearGradient: gradientColor, angle: 90)
+            dataSet.drawFilledEnabled = true
             dataSet.drawHorizontalHighlightIndicatorEnabled = false
+            dataSet.valueFont = .systemFont(ofSize: 9)
 
             let data = LineChartData(dataSet: dataSet)
             data.setValueFont(UIFont(name: "HelveticaNeue-Light", size: 9)!)
             data.setDrawValues(false)
             cell.lineChart.data = data
-//            dataSet.colors = [UIColor(red: 230/255, green: 126/255, blue: 34/255, alpha: 1)]
 
             return cell
         }
@@ -167,8 +171,21 @@ extension SubMainViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-//extension SubMainViewController: GraphViewCellDelegate {
-//    func handleSegmentControlPressed(sender: GraphViewCell) {
-//        
-//    }
-//}
+extension SubMainViewController: GraphViewCellDelegate {
+    func handleSegmentControlPressed(sender: GraphViewCell) {
+
+        let index = sender.segmentControl.selectedSegmentIndex
+        switch index {
+        case 0:
+            dayRange = 7
+        case 1:
+            dayRange = 15
+        case 2:
+            dayRange = 30
+        default:
+            break
+        }
+        print(dayRange)
+        self.collectionView.reloadData()
+    }
+}

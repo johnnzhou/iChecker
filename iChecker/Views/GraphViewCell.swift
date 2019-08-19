@@ -18,6 +18,8 @@ class GraphViewCell: UICollectionViewCell {
     let container = UIView()
     let segmentControl = UISegmentedControl(items: ["7 days", "15 days", "30 days"])
     let lineChart = LineChartView()
+    var rates: [Double]? = nil
+    var dayRange: Int = 7
     var delegate: GraphViewCellDelegate? = nil
     
     override init(frame: CGRect) {
@@ -27,6 +29,8 @@ class GraphViewCell: UICollectionViewCell {
         initSegmentControl()
         initGraph()
     }
+
+    
 
     func initContainer() {
         contentView.addSubview(container)
@@ -59,9 +63,11 @@ class GraphViewCell: UICollectionViewCell {
     func initGraph() {
         container.addSubview(lineChart)
         lineChart.translatesAutoresizingMaskIntoConstraints = false
-//        lineChart.dragEnabled = false
-//        lineChart.pinchZoomEnabled = false
-        lineChart.animate(xAxisDuration: 3, easingOption: .easeInBounce)
+
+
+
+        lineChart.noDataText = "No Data Available."
+        lineChart.animate(xAxisDuration: 1.5, easingOption: .easeInQuad)
         lineChart.xAxis.enabled = false
         lineChart.rightAxis.enabled = false
         lineChart.legend.enabled = false
@@ -69,6 +75,12 @@ class GraphViewCell: UICollectionViewCell {
         lineChart.setScaleEnabled(false)
         lineChart.leftAxis.drawAxisLineEnabled = false
         lineChart.leftAxis.drawGridLinesEnabled = false
+        lineChart.leftAxis.labelPosition = .insideChart
+
+        let marker = BalloonMarker(color: .gray, font: .systemFont(ofSize: 9), textColor: .black, insets: UIEdgeInsets(top: 8, left: 8, bottom: 20, right: 8))
+        marker.chartView = lineChart
+
+        lineChart.marker = marker
 
         NSLayoutConstraint.activate([
             lineChart.topAnchor.constraint(equalTo: segmentControl.bottomAnchor, constant: 10),
@@ -85,15 +97,6 @@ class GraphViewCell: UICollectionViewCell {
 
 extension GraphViewCell {
     @objc func handleSegmentControlPressed(_ sender: UISegmentedControl) {
-        switch sender.selectedSegmentIndex {
-        case 0:
-            print("7 days")
-        case 1:
-            print("15 days")
-        case 2:
-            print("30 days")
-        default:
-            break
-        }
+        delegate?.handleSegmentControlPressed(sender: self)
     }
 }

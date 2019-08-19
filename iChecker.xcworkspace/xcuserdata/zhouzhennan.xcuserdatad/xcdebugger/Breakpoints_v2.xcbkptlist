@@ -20,63 +20,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "iChecker/Views/GraphViewCell.swift"
-            timestampString = "587870221.000268"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
-            landmarkName = "GraphViewCell"
-            landmarkType = "3">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "iChecker.GraphViewCell.__allocating_init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;iChecker.GraphViewCell&gt;"
-                  moduleName = "iChecker"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/zhouzhennan/Desktop/Swfit%20Practice/iChecker/iChecker/Views/GraphViewCell.swift"
-                  timestampString = "587870221.136955"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "0"
-                  endingLineNumber = "0"
-                  offsetFromSymbolStart = "12">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "iChecker.GraphViewCell.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;iChecker.GraphViewCell&gt;"
-                  moduleName = "iChecker"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/zhouzhennan/Desktop/Swfit%20Practice/iChecker/iChecker/Views/GraphViewCell.swift"
-                  timestampString = "587870221.139142"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "18"
-                  endingLineNumber = "18"
-                  offsetFromSymbolStart = "98">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iChecker/Views/GraphViewCell.swift"
-            timestampString = "587870221.000326"
+            timestampString = "587918247.7835391"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
             landmarkName = "init(frame:)"
             landmarkType = "7">
          </BreakpointContent>

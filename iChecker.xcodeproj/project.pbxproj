@@ -23,6 +23,7 @@
 		0432422E22F5E96D00EF097B /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0432422D22F5E96D00EF097B /* MessageUI.framework */; };
 		0451102F2307DFB9005E8A75 /* SubMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0451102E2307DFB9005E8A75 /* SubMainViewController.swift */; };
 		0458BCC82303C783009540FF /* MainViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0458BCC72303C783009540FF /* MainViewCell.swift */; };
+		045C90BB230A92DF004DBFBF /* BallonMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045C90BA230A92DF004DBFBF /* BallonMarker.swift */; };
 		045F6C3A22F9C5FB00FAC30E /* BaseCurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045F6C3922F9C5FB00FAC30E /* BaseCurrencyViewController.swift */; };
 		04CCBC2D2300089700675350 /* BaseCurrencyPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CCBC2C2300089700675350 /* BaseCurrencyPickerView.swift */; };
 		04CCBC2F23003AB000675350 /* DisclaimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CCBC2E23003AB000675350 /* DisclaimerViewController.swift */; };
@@ -54,6 +55,7 @@
 		0432422D22F5E96D00EF097B /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		0451102E2307DFB9005E8A75 /* SubMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubMainViewController.swift; sourceTree = "<group>"; };
 		0458BCC72303C783009540FF /* MainViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewCell.swift; sourceTree = "<group>"; };
+		045C90BA230A92DF004DBFBF /* BallonMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BallonMarker.swift; sourceTree = "<group>"; };
 		045F6C3922F9C5FB00FAC30E /* BaseCurrencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCurrencyViewController.swift; sourceTree = "<group>"; };
 		04CCBC2C2300089700675350 /* BaseCurrencyPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCurrencyPickerView.swift; sourceTree = "<group>"; };
 		04CCBC2E23003AB000675350 /* DisclaimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisclaimerViewController.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				04CCBC3723005EAD00675350 /* String+iChecker.swift */,
+				045C90BA230A92DF004DBFBF /* BallonMarker.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -317,6 +320,7 @@
 				0458BCC82303C783009540FF /* MainViewCell.swift in Sources */,
 				0410A80A22F6B30D00678085 /* ExpandableTime.swift in Sources */,
 				04CCBC2F23003AB000675350 /* DisclaimerViewController.swift in Sources */,
+				045C90BB230A92DF004DBFBF /* BallonMarker.swift in Sources */,
 				0432422322F5848700EF097B /* TabBarController.swift in Sources */,
 				0410A80622F688C600678085 /* SettingNotificationViewController.swift in Sources */,
 				0432422122F5800C00EF097B /* SettingsViewController.swift in Sources */,
