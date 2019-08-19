@@ -162,7 +162,7 @@ extension SubMainViewController: UICollectionViewDelegateFlowLayout {
         case .data:
             return CGSize(width: width - 20, height: 450)
         case .graph:
-            return CGSize(width: width - 20, height: 450)
+            return CGSize(width: width, height: 450)
         }
     }
 }

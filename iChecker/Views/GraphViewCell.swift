@@ -68,6 +68,7 @@ class GraphViewCell: UICollectionViewCell {
         lineChart.backgroundColor = .white
         lineChart.setScaleEnabled(false)
         lineChart.leftAxis.drawAxisLineEnabled = false
+        lineChart.leftAxis.drawGridLinesEnabled = false
 
         NSLayoutConstraint.activate([
             lineChart.topAnchor.constraint(equalTo: segmentControl.bottomAnchor, constant: 10),
