@@ -149,6 +149,8 @@ extension SubMainViewController: UICollectionViewDataSource {
             let data = LineChartData(dataSet: dataSet)
             data.setValueFont(UIFont(name: "HelveticaNeue-Light", size: 9)!)
             data.setDrawValues(false)
+
+            cell.lineChart.animate(xAxisDuration: 1.5, easingOption: .easeInQuad)
             cell.lineChart.data = data
 
             return cell

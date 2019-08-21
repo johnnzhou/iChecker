@@ -18,8 +18,6 @@ class GraphViewCell: UICollectionViewCell {
     let container = UIView()
     let segmentControl = UISegmentedControl(items: ["7 days", "15 days", "30 days"])
     let lineChart = LineChartView()
-    var rates: [Double]? = nil
-    var dayRange: Int = 7
     var delegate: GraphViewCellDelegate? = nil
     
     override init(frame: CGRect) {
@@ -67,7 +65,6 @@ class GraphViewCell: UICollectionViewCell {
 
 
         lineChart.noDataText = "No Data Available."
-        lineChart.animate(xAxisDuration: 1.5, easingOption: .easeInQuad)
         lineChart.xAxis.enabled = false
         lineChart.rightAxis.enabled = false
         lineChart.legend.enabled = false

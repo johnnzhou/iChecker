@@ -25,6 +25,7 @@
 		0458BCC82303C783009540FF /* MainViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0458BCC72303C783009540FF /* MainViewCell.swift */; };
 		045C90BB230A92DF004DBFBF /* BallonMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045C90BA230A92DF004DBFBF /* BallonMarker.swift */; };
 		045F6C3A22F9C5FB00FAC30E /* BaseCurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045F6C3922F9C5FB00FAC30E /* BaseCurrencyViewController.swift */; };
+		0474D695230CF3CA009DBA35 /* ExchangeRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0474D694230CF3CA009DBA35 /* ExchangeRate.swift */; };
 		04CCBC2D2300089700675350 /* BaseCurrencyPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CCBC2C2300089700675350 /* BaseCurrencyPickerView.swift */; };
 		04CCBC2F23003AB000675350 /* DisclaimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CCBC2E23003AB000675350 /* DisclaimerViewController.swift */; };
 		04CCBC312300477E00675350 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CCBC302300477E00675350 /* AboutViewController.swift */; };
@@ -33,6 +34,7 @@
 		04CCBC3A2300685100675350 /* CalculatorCurrenciesViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CCBC392300685100675350 /* CalculatorCurrenciesViewCell.swift */; };
 		04FBE4222307F85800F44CEA /* GraphViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FBE4212307F85800F44CEA /* GraphViewCell.swift */; };
 		04FBE4242307F86D00F44CEA /* HistoricalDataViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FBE4232307F86D00F44CEA /* HistoricalDataViewCell.swift */; };
+		04FDD82E230BA3830001A71F /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FDD82D230BA3830001A71F /* Country.swift */; };
 		D9EDD029564AAD59C49A6F62 /* Pods_iChecker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D513236A9FA649DD90853078 /* Pods_iChecker.framework */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +59,7 @@
 		0458BCC72303C783009540FF /* MainViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewCell.swift; sourceTree = "<group>"; };
 		045C90BA230A92DF004DBFBF /* BallonMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BallonMarker.swift; sourceTree = "<group>"; };
 		045F6C3922F9C5FB00FAC30E /* BaseCurrencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCurrencyViewController.swift; sourceTree = "<group>"; };
+		0474D694230CF3CA009DBA35 /* ExchangeRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRate.swift; sourceTree = "<group>"; };
 		04CCBC2C2300089700675350 /* BaseCurrencyPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCurrencyPickerView.swift; sourceTree = "<group>"; };
 		04CCBC2E23003AB000675350 /* DisclaimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisclaimerViewController.swift; sourceTree = "<group>"; };
 		04CCBC302300477E00675350 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
@@ -65,6 +68,7 @@
 		04CCBC392300685100675350 /* CalculatorCurrenciesViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorCurrenciesViewCell.swift; sourceTree = "<group>"; };
 		04FBE4212307F85800F44CEA /* GraphViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewCell.swift; sourceTree = "<group>"; };
 		04FBE4232307F86D00F44CEA /* HistoricalDataViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalDataViewCell.swift; sourceTree = "<group>"; };
+		04FDD82D230BA3830001A71F /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
 		96FEA3481F9052A2F6737F57 /* Pods-iChecker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iChecker.debug.xcconfig"; path = "Target Support Files/Pods-iChecker/Pods-iChecker.debug.xcconfig"; sourceTree = "<group>"; };
 		AB8C08FFC25BA652CD610DCC /* Pods-iChecker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iChecker.release.xcconfig"; path = "Target Support Files/Pods-iChecker/Pods-iChecker.release.xcconfig"; sourceTree = "<group>"; };
 		D513236A9FA649DD90853078 /* Pods_iChecker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iChecker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -120,6 +124,8 @@
 			children = (
 				0410A80722F696B700678085 /* NotificationTime.swift */,
 				0410A80922F6B30D00678085 /* ExpandableTime.swift */,
+				04FDD82D230BA3830001A71F /* Country.swift */,
+				0474D694230CF3CA009DBA35 /* ExchangeRate.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -311,11 +317,13 @@
 				04CCBC3A2300685100675350 /* CalculatorCurrenciesViewCell.swift in Sources */,
 				0432421F22F5800300EF097B /* CalculatorViewController.swift in Sources */,
 				04CCBC312300477E00675350 /* AboutViewController.swift in Sources */,
+				0474D695230CF3CA009DBA35 /* ExchangeRate.swift in Sources */,
 				04CCBC2D2300089700675350 /* BaseCurrencyPickerView.swift in Sources */,
 				0432421D22F57FF500EF097B /* MainViewController.swift in Sources */,
 				045F6C3A22F9C5FB00FAC30E /* BaseCurrencyViewController.swift in Sources */,
 				04FBE4222307F85800F44CEA /* GraphViewCell.swift in Sources */,
 				0410A80422F6884F00678085 /* SettingNotificationViewCell.swift in Sources */,
+				04FDD82E230BA3830001A71F /* Country.swift in Sources */,
 				0432422722F5CBB900EF097B /* settingsViewCell.swift in Sources */,
 				0458BCC82303C783009540FF /* MainViewCell.swift in Sources */,
 				0410A80A22F6B30D00678085 /* ExpandableTime.swift in Sources */,
