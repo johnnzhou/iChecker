@@ -32,6 +32,7 @@
 		04CCBC332300489E00675350 /* SpecialThanksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CCBC322300489E00675350 /* SpecialThanksViewController.swift */; };
 		04CCBC3823005EAD00675350 /* String+iChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CCBC3723005EAD00675350 /* String+iChecker.swift */; };
 		04CCBC3A2300685100675350 /* CalculatorCurrenciesViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CCBC392300685100675350 /* CalculatorCurrenciesViewCell.swift */; };
+		04EBFEDE230EBD80001FD38A /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04EBFEDD230EBD80001FD38A /* Category.swift */; };
 		04FBE4222307F85800F44CEA /* GraphViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FBE4212307F85800F44CEA /* GraphViewCell.swift */; };
 		04FBE4242307F86D00F44CEA /* HistoricalDataViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FBE4232307F86D00F44CEA /* HistoricalDataViewCell.swift */; };
 		04FDD82E230BA3830001A71F /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FDD82D230BA3830001A71F /* Country.swift */; };
@@ -66,6 +67,7 @@
 		04CCBC322300489E00675350 /* SpecialThanksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecialThanksViewController.swift; sourceTree = "<group>"; };
 		04CCBC3723005EAD00675350 /* String+iChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+iChecker.swift"; sourceTree = "<group>"; };
 		04CCBC392300685100675350 /* CalculatorCurrenciesViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorCurrenciesViewCell.swift; sourceTree = "<group>"; };
+		04EBFEDD230EBD80001FD38A /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		04FBE4212307F85800F44CEA /* GraphViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphViewCell.swift; sourceTree = "<group>"; };
 		04FBE4232307F86D00F44CEA /* HistoricalDataViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalDataViewCell.swift; sourceTree = "<group>"; };
 		04FDD82D230BA3830001A71F /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				0410A80922F6B30D00678085 /* ExpandableTime.swift */,
 				04FDD82D230BA3830001A71F /* Country.swift */,
 				0474D694230CF3CA009DBA35 /* ExchangeRate.swift */,
+				04EBFEDD230EBD80001FD38A /* Category.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -329,6 +332,7 @@
 				0410A80A22F6B30D00678085 /* ExpandableTime.swift in Sources */,
 				04CCBC2F23003AB000675350 /* DisclaimerViewController.swift in Sources */,
 				045C90BB230A92DF004DBFBF /* BallonMarker.swift in Sources */,
+				04EBFEDE230EBD80001FD38A /* Category.swift in Sources */,
 				0432422322F5848700EF097B /* TabBarController.swift in Sources */,
 				0410A80622F688C600678085 /* SettingNotificationViewController.swift in Sources */,
 				0432422122F5800C00EF097B /* SettingsViewController.swift in Sources */,

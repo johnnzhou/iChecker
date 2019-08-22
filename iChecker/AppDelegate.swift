@@ -17,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     let currencies = ["CAD", "CNY", "EUR", "JPY", "HKD", "USD", "GBP"]
+    let realm = try! Realm()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
@@ -31,10 +32,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         if isAppAlreadyLaunchedOnce() {
             print("launched once")
+            for first in 0..<currencies.count {
+                for second in (first + 1)..<currencies.count {
+                    let _ = dailyRequest(base: currencies[first], symbol: currencies[second])
+                }
+            }
         } else {
             for first in 0..<currencies.count {
                 for second in (first + 1)..<currencies.count {
-                    let _ = alamofireRequest(base: currencies[first],
+                    let _ = initialRequest(base: currencies[first],
                                              symbol: currencies[second],
                                              startsAt: startsAt,
                                              endsAt: endsAt)
@@ -42,6 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
 
         }
+
         // controll the interfaces programmatically
 //        let viewController = TabBarController()
 //        window = UIWindow()
@@ -50,8 +57,45 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
+    private func dailyRequest(base: String, symbol: String) -> Promise<Void> {
+        let url = "https://api.exchangerate-api.com/v4/latest/\(base)"
+        return firstly() {
+            return Promise()
+            }.then { _ in
+                Alamofire.request(url, method: .get).responseData()
+            }.done() { data in
+                let json = try JSON(data: data.data)
+                #if DEBUG
+                print(json)
+                #endif
+                var rate = json["rates"]["\(symbol)"].rawValue as! Double
+                var result: ExchangeRate!
+                if let currenciesRate = self.realm.object(ofType: ExchangeRate.self, forPrimaryKey: "\(base)\(symbol)") {
+                    result = currenciesRate
+                } else {
+                    let currenciesRate = self.realm.object(ofType: ExchangeRate.self, forPrimaryKey: "\(symbol)\(base)")
+                    rate = 1.0 / rate
+                    result = currenciesRate
+                }
+                do {
+                    try self.realm.write {
+                        result.now = rate
+                        if result.dailyHigh < rate {
+                            result.dailyHigh = rate
+                            result.trend = true
+                        }
+                        if result.dailyLow > rate {
+                            result.dailyLow = rate
+                            result.trend = false
+                        }
+                    }
+                } catch {
+                    print("Error in storing data \(error)")
+                }
+        }
+    }
 
-    private func alamofireRequest(base: String, symbol: String, startsAt: String, endsAt: String) -> Promise<Void> {
+    private func initialRequest(base: String, symbol: String, startsAt: String, endsAt: String) -> Promise<Void> {
         let url = "https://api.exchangeratesapi.io/history?start_at=\(startsAt)&end_at=\(endsAt)&base=\(base)&symbols=\(symbol)";
         return firstly() {
             return Promise()
@@ -74,16 +118,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 baseCountry.abbreName = base
                 symbolCountry.abbreName = symbol
 
+//                let category = Category()
+//                category.name = "\(base)\(symbol)"
+
                 let data = ExchangeRate()
+                data.baseSymbol = "\(base)\(symbol)"
                 data.base = baseCountry
                 data.symbol = symbolCountry
                 data.dates = finalResult.0
                 data.rates = finalResult.1
+                data.dailyLow = 100000
+                data.dailyHigh = 0
+                data.rangeMax = data.rates.max()!
+                data.rangeMin = data.rates.min()!
                 data.average = data.rates.average()!
-                let realm = try! Realm()
+                data.averageChange = (data.rates.map { abs(data.average - $0) }.reduce(0, +)) / Double(data.rates.count)
                 do {
-                    try realm.write {
-                        realm.add(data)
+                    try self.realm.write {
+                        self.realm.add(data)
                     }
                 } catch {
                     print("Error in saving data to Realm \(error)")
