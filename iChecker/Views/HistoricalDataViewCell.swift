@@ -36,26 +36,6 @@ class HistoricalDataViewCell: UICollectionViewCell {
     let average = UILabel()
     let averageChange = UILabel()
 
-    let numberAttribute = [
-        NSAttributedString.Key.foregroundColor : UIColor.cyan,
-        NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 30)
-    ]
-
-    let smallNumberAttribute = [
-        NSAttributedString.Key.foregroundColor : UIColor.black,
-        NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 20)
-    ]
-
-    let rateAttribute = [
-        NSAttributedString.Key.foregroundColor : UIColor.cyan,
-        NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 50)
-    ]
-
-    let smallRateAttribute = [
-        NSAttributedString.Key.foregroundColor : UIColor.black,
-        NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 20)
-    ]
-
     override init(frame: CGRect) {
         super.init(frame: frame)
 
@@ -65,24 +45,6 @@ class HistoricalDataViewCell: UICollectionViewCell {
         initShare()
         initHistoricalData()
     }
-
-    func attributedString(first: String, decimal: String) -> NSAttributedString {
-        let result = NSMutableAttributedString(string: "")
-
-        result.append(NSAttributedString(string: first, attributes: numberAttribute))
-        result.append(NSAttributedString(string: decimal, attributes: smallNumberAttribute))
-        result.append(NSAttributedString(string: "%", attributes: numberAttribute))
-        return result
-    }
-
-    func attributedRateString(first: String, decimal: String) -> NSAttributedString {
-        let result = NSMutableAttributedString(string: "")
-
-        result.append(NSAttributedString(string: first, attributes: rateAttribute))
-        result.append(NSAttributedString(string: decimal, attributes: smallRateAttribute))
-        return result
-    }
-
 
     func initContainer(){
         contentView.addSubview(mainContainer)
@@ -155,17 +117,14 @@ class HistoricalDataViewCell: UICollectionViewCell {
         realTimeLabel.text = "Real time:"
 
         mainContainer.addSubview(rate)
-        rate.attributedText = attributedRateString(first: "6", decimal: ".789")
         rate.translatesAutoresizingMaskIntoConstraints = false
         mainContainer.addSubview(dailyLabel)
         dailyLabel.translatesAutoresizingMaskIntoConstraints = false
         dailyLabel.text = "Daily: "
         mainContainer.addSubview(dailyLow)
         dailyLow.translatesAutoresizingMaskIntoConstraints = false
-        dailyLow.text = "L:" + "7.012"
         mainContainer.addSubview(dailyHigh)
         dailyHigh.translatesAutoresizingMaskIntoConstraints = false
-        dailyHigh.text = "H:" + "7.324"
 
         NSLayoutConstraint.activate([
             realTimeLabel.topAnchor.constraint(equalTo: mainContainer.topAnchor, constant: 10),
@@ -188,9 +147,6 @@ class HistoricalDataViewCell: UICollectionViewCell {
         trendDirection.translatesAutoresizingMaskIntoConstraints = false
 
         trendRate.textColor = .black
-        trendRate.attributedText = attributedString(first: "0", decimal: "00067");
-
-        trendDirection.image = #imageLiteral(resourceName: "increase")
 
         NSLayoutConstraint.activate([
             trendRate.centerXAnchor.constraint(equalTo: trendContainer.centerXAnchor),
@@ -224,16 +180,12 @@ class HistoricalDataViewCell: UICollectionViewCell {
     func initHistoricalData() {
         historicalDataContainer.addSubview(range)
         range.translatesAutoresizingMaskIntoConstraints = false
-        range.text = "2019-09-01 -- 2019-09-11"
         historicalDataContainer.addSubview(rangeMax)
         rangeMax.translatesAutoresizingMaskIntoConstraints = false
-        rangeMax.text = "Max: " + "7.111"
         historicalDataContainer.addSubview(rangeMin)
         rangeMin.translatesAutoresizingMaskIntoConstraints = false
-        rangeMin.text = "Min: " + "7.0001"
         historicalDataContainer.addSubview(average)
         average.translatesAutoresizingMaskIntoConstraints = false
-        average.text = "Average: " + "6.999"
         historicalDataContainer.addSubview(averageChange)
         averageChange.translatesAutoresizingMaskIntoConstraints = false
         averageChange.text = "Avg Change: " + "0.007"

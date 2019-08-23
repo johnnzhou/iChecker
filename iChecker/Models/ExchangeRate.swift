@@ -17,6 +17,7 @@ class ExchangeRate: Object {
     @objc dynamic var dailyHigh: Double = 0.0
     @objc dynamic var dailyLow: Double = 0.0
     @objc dynamic var now: Double = 0.0
+    @objc dynamic var changeRate: Double = 0.0
     @objc dynamic var rangeMax: Double = 0.0
     @objc dynamic var rangeMin: Double = 0.0
     @objc dynamic var trend: Bool = false

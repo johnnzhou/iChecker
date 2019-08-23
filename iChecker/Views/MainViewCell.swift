@@ -8,16 +8,12 @@
 
 import UIKit
 
-protocol MainViewCellDelegate {
-    func handleInfoButtonPressed(sender: MainViewCell)
-}
-
 class MainViewCell: UITableViewCell {
 
     let containerView = UIView()
     let content = UIView()
     let flag = UIImageView()
-    let name = UILabel()
+    let baseName = UILabel()
     let rate = UILabel()
     let high = UILabel()
     let low = UILabel()
@@ -25,7 +21,6 @@ class MainViewCell: UITableViewCell {
     let trendArrow = UIImageView()
 
     let trend: Bool = true
-    var delegate: MainViewCellDelegate? = nil
 
     let numberAttribute = [
         NSAttributedString.Key.foregroundColor : UIColor.cyan,
@@ -87,50 +82,45 @@ class MainViewCell: UITableViewCell {
         content.addSubview(flag)
         flag.translatesAutoresizingMaskIntoConstraints = false
 
-        content.addSubview(name)
-        name.translatesAutoresizingMaskIntoConstraints = false
-        name.text = "HKD"
-        name.textColor = .black
+        content.addSubview(baseName)
+        baseName.translatesAutoresizingMaskIntoConstraints = false
+        baseName.textColor = .black
 
         content.addSubview(rate)
         rate.translatesAutoresizingMaskIntoConstraints = false
-        rate.attributedText = attributedString(first: "6", decimal: ".869")
 
         content.addSubview(high)
         high.translatesAutoresizingMaskIntoConstraints = false
         high.textColor = .green
-        high.text = "H: " + "6.789"
 
         content.addSubview(low)
         low.translatesAutoresizingMaskIntoConstraints = false
         low.textColor = .magenta
-        low.text = "L: " + "6.567"
 
         content.addSubview(info)
         info.translatesAutoresizingMaskIntoConstraints = false
         info.setImage(#imageLiteral(resourceName: "info"), for: .normal)
-        info.addTarget(self, action: #selector(handleInfoButtonPressed(_:)), for: .touchUpInside)
+//        info.addTarget(self, action: #selector(handleInfoButtonPressed(_:)), for: .touchUpInside)
 
         content.addSubview(trendArrow)
         trendArrow.translatesAutoresizingMaskIntoConstraints = false
-        trendArrow.image = trend ? #imageLiteral(resourceName: "increase") : #imageLiteral(resourceName: "decrease")
 
         NSLayoutConstraint.activate([
             content.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 20),
             content.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -20),
             content.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 10),
             content.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -10),
-            flag.centerYAnchor.constraint(equalTo: content.centerYAnchor),
+            flag.centerYAnchor.constraint(equalTo: content.centerYAnchor, constant: -30),
             flag.leadingAnchor.constraint(equalTo: content.leadingAnchor, constant: 12),
-            flag.widthAnchor.constraint(equalToConstant: 45),
-            flag.heightAnchor.constraint(equalToConstant: 45),
-            name.centerYAnchor.constraint(equalTo: content.centerYAnchor),
-            name.leadingAnchor.constraint(equalTo: flag.trailingAnchor, constant: 10),
+            flag.widthAnchor.constraint(equalToConstant: 36),
+            flag.heightAnchor.constraint(equalToConstant: 36),
+            baseName.centerYAnchor.constraint(equalTo: content.centerYAnchor, constant: -30),
+            baseName.leadingAnchor.constraint(equalTo: flag.trailingAnchor, constant: 10),
             rate.topAnchor.constraint(equalTo: content.topAnchor, constant: 20),
-            rate.leadingAnchor.constraint(equalTo: name.trailingAnchor, constant: 60),
-            high.leadingAnchor.constraint(equalTo: name.trailingAnchor, constant: 60),
+            rate.leadingAnchor.constraint(equalTo: baseName.trailingAnchor, constant: 30),
+            high.leadingAnchor.constraint(equalTo: baseName.trailingAnchor, constant: 10),
             high.topAnchor.constraint(equalTo: content.bottomAnchor, constant: -30),
-            low.leadingAnchor.constraint(equalTo: high.trailingAnchor, constant: 30),
+            low.leadingAnchor.constraint(equalTo: high.trailingAnchor, constant: 20),
             low.topAnchor.constraint(equalTo: content.bottomAnchor, constant: -30),
             info.widthAnchor.constraint(equalToConstant: 36),
             info.heightAnchor.constraint(equalToConstant: 36),
@@ -142,8 +132,8 @@ class MainViewCell: UITableViewCell {
     }
 }
 
-extension MainViewCell {
-    @objc func handleInfoButtonPressed(_ sender: UIButton) {
-        delegate?.handleInfoButtonPressed(sender: self)
-    }
-}
+//extension MainViewCell {
+//    @objc func handleInfoButtonPressed(_ sender: UIButton) {
+//        delegate?.handleInfoButtonPressed(sender: self)
+//    }
+//}

@@ -8,6 +8,7 @@
 
 import UIKit
 import Hero
+import RealmSwift
 import Charts
 
 enum Sections: Int, CaseIterable {
@@ -17,38 +18,43 @@ enum Sections: Int, CaseIterable {
 
 class SubMainViewController: UIViewController {
 
+    var id: String? = nil
+    let realm = try! Realm()
+    var data: ExchangeRate? = nil
+    var rates: List<Double>? = nil
+
+    let numberAttribute = [
+        NSAttributedString.Key.foregroundColor : UIColor.cyan,
+        NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 30)
+    ]
+
+    let smallNumberAttribute = [
+        NSAttributedString.Key.foregroundColor : UIColor.black,
+        NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 20)
+    ]
+
+    let rateAttribute = [
+        NSAttributedString.Key.foregroundColor : UIColor.cyan,
+        NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 50)
+    ]
+
+    let smallRateAttribute = [
+        NSAttributedString.Key.foregroundColor : UIColor.black,
+        NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 20)
+    ]
+
+    init(id: String, data: ExchangeRate) {
+        super.init(nibName: nil, bundle: nil)
+        self.id = id
+        self.data = data
+        self.rates = self.data?.rates
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     var dayRange: Int = 7
-    let rates = [7.0429,
-                 7.0429,
-                 7.0339,
-                 7.0244,
-                 7.0435,
-                 7.0580,
-                 7.0624,
-                 7.0626,
-                 7.0626,
-                 7.0454,
-                 7.0604,
-                 7.0261,
-                 7.0507,
-                 6.9401,
-                 6.9402,
-                 6.9402,
-                 6.8986,
-                 6.8842,
-                 6.8844,
-                 6.8936,
-                 6.8792,
-                 6.8798,
-                 6.8798,
-                 6.8726,
-                 6.8726,
-                 6.8792,
-                 6.8811,
-                 6.8817,
-                 6.8819,
-                 6.8817,
-                 6.8800]
 
     let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -64,7 +70,10 @@ class SubMainViewController: UIViewController {
     }
 
     func initNavigation() {
-        navigationItem.title = "🇨🇳 - 🇺🇸"
+        guard let dataList = data else {
+            return
+        }
+        navigationItem.title = "\(dataList.base?.flag ?? "") - \(dataList.symbol?.flag ?? "")"
     }
 
     func initCollectionView() {
@@ -86,6 +95,27 @@ class SubMainViewController: UIViewController {
 
         collectionView.register(HistoricalDataViewCell.self, forCellWithReuseIdentifier: "\(HistoricalDataViewCell.self)")
         collectionView.register(GraphViewCell.self, forCellWithReuseIdentifier: "\(GraphViewCell.self)")
+    }
+}
+
+extension SubMainViewController {
+    func attributedString(first: String, decimal: String) -> NSAttributedString {
+        let result = NSMutableAttributedString(string: "")
+
+        result.append(NSAttributedString(string: first, attributes: numberAttribute))
+        result.append(NSAttributedString(string: ".", attributes: numberAttribute))
+        result.append(NSAttributedString(string: decimal, attributes: smallNumberAttribute))
+        result.append(NSAttributedString(string: "%", attributes: numberAttribute))
+        return result
+    }
+
+    func attributedRateString(first: String, decimal: String) -> NSAttributedString {
+        let result = NSMutableAttributedString(string: "")
+
+        result.append(NSAttributedString(string: first, attributes: rateAttribute))
+        result.append(NSAttributedString(string: ".", attributes: rateAttribute))
+        result.append(NSAttributedString(string: decimal, attributes: smallRateAttribute))
+        return result
     }
 }
 
@@ -119,15 +149,32 @@ extension SubMainViewController: UICollectionViewDataSource {
         switch sec {
         case .data:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(HistoricalDataViewCell.self)", for: indexPath) as! HistoricalDataViewCell
-
+            guard let dataList = data else {
+                return cell
+            }
+            let realTime = String(format: "%.3f", dataList.now).split(separator: ".")
+            let trendRate = String(format: "%.3f", dataList.changeRate).split(separator: ".")
+            cell.rate.attributedText = attributedRateString(first: String(realTime[0]), decimal: String(realTime[1]))
+            cell.dailyLow.text = "L:" + String(format: "%.3f", dataList.dailyLow)
+            cell.dailyHigh.text = "H: " + String(format: "%.3f", dataList.dailyHigh)
+            cell.trendRate.attributedText = attributedString(first: String(trendRate[0]), decimal: String(trendRate[1]));
+            cell.trendDirection.image = dataList.trend ? #imageLiteral(resourceName: "increase") : #imageLiteral(resourceName: "decrease")
+            cell.range.text = "\(dataList.dates[0]) -- \(dataList.dates[dataList.dates.count - 1])"
+            cell.rangeMax.text = "Max: " + String(format: "%.3f", dataList.rangeMax)
+            cell.rangeMin.text = "Min: " + String(format: "%.3f", dataList.rangeMin)
+            cell.average.text = "Average: " + String(format: "%.3f", dataList.average)
+            cell.averageChange.text = "Avg Change: " + String(format: "%.3f", dataList.averageChange)
 
             return cell
         case .graph:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(GraphViewCell.self)", for: indexPath) as! GraphViewCell
             cell.delegate = self
+            guard let ratesList = rates else {
+                return cell
+            }
             var lineChartEntry = [ChartDataEntry]()
             for i in 0..<dayRange {
-                let value = ChartDataEntry(x: Double(i), y: rates[dayRange - 1 - i])
+                let value = ChartDataEntry(x: Double(i), y: ratesList[dayRange - 1 - i])
                 lineChartEntry.append(value)
             }
 

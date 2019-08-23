@@ -7,9 +7,24 @@
 //
 
 import UIKit
+import RealmSwift
 
 class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var currencyTableView: UITableView!
+    let realm = try! Realm()
+    let currencies = UserDefaults.standard.array(forKey: "pairs")
+    var id: String? = nil
+    var finalData: ExchangeRate!
+
+    let numberAttribute = [
+        NSAttributedString.Key.foregroundColor : UIColor.cyan,
+        NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 40)
+    ]
+
+    let smallNumberAttribute = [
+        NSAttributedString.Key.foregroundColor : UIColor.black,
+        NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 16)
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +61,16 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: settingButton)
         tabBarController?.tabBar.isHidden = false
     }
+
+    func attributedString(first: String, decimal: String) -> NSAttributedString {
+        let result = NSMutableAttributedString(string: "")
+
+        result.append(NSAttributedString(string: first, attributes: numberAttribute))
+        result.append(NSAttributedString(string: ".", attributes: numberAttribute))
+        result.append(NSAttributedString(string: decimal, attributes: smallNumberAttribute))
+
+        return result
+    }
 }
 
 extension MainViewController {
@@ -63,17 +88,49 @@ extension MainViewController {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        return currencies?.count ?? 1
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = currencyTableView.dequeueReusableCell(withIdentifier: "MainViewCell", for: indexPath) as! MainViewCell
-        cell.delegate = self
+
         cell.translatesAutoresizingMaskIntoConstraints = false
-        cell.flag.image = "🏴󠁧󠁢󠁥󠁮󠁧󠁿".image()
+
+        guard let currenciesList = currencies else {
+            return cell
+        }
+        let primaryKey = currenciesList[indexPath.row] as! String
+        var optional = [String]()
+        optional.append(String(primaryKey.split(separator: "-")[1]))
+        optional.append(String(primaryKey.split(separator: "-")[0]))
+        let optionalKey = optional.joined(separator: "-")
+        id = primaryKey
+        if let rates = realm.object(ofType: ExchangeRate.self, forPrimaryKey: primaryKey) {
+            finalData = rates
+        } else {
+            finalData = realm.object(ofType: ExchangeRate.self, forPrimaryKey: optionalKey)
+        }
+
+        cell.flag.image = finalData.base?.flag.image()
+        cell.baseName.text = finalData.base?.abbreName
+        let realTime = String(format: "%.3f", finalData.now).split(separator: ".")
+        cell.rate.attributedText = attributedString(first: String(realTime[0]), decimal: String(realTime[1]))
+        cell.high.text = "H: " + String(format: "%.3f", finalData.dailyHigh)
+        cell.low.text = "L: " + String(format: "%.3f", finalData.dailyLow)
+        cell.trendArrow.image = finalData.trend ? #imageLiteral(resourceName: "increase") : #imageLiteral(resourceName: "decrease")
+
         cell.backgroundColor = .clear
         cell.selectionStyle = .none
         return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let id = id else {
+            return
+        }
+        let vc = SubMainViewController(id: id, data: finalData)
+        navigationController?.pushViewController(vc, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -83,12 +140,5 @@ extension MainViewController {
     func configerTableView() {
         currencyTableView.rowHeight = UITableView.automaticDimension
         currencyTableView.estimatedRowHeight = 200
-    }
-}
-
-extension MainViewController: MainViewCellDelegate {
-    func handleInfoButtonPressed(sender: MainViewCell) {
-        let vc = SubMainViewController()
-        navigationController?.pushViewController(vc, animated: true)
     }
 }
