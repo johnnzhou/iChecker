@@ -11,33 +11,38 @@ import RealmSwift
 
 class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var currencyTableView: UITableView!
+
     let realm = try! Realm()
     let currencies = UserDefaults.standard.array(forKey: "pairs")
     var id: String? = nil
     var finalData: ExchangeRate!
 
     let numberAttribute = [
-        NSAttributedString.Key.foregroundColor : UIColor.cyan,
-        NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 40)
+        NSAttributedString.Key.foregroundColor : UIColor.titleColor,
+        NSAttributedString.Key.font : UIFont.rateFont
     ]
 
     let smallNumberAttribute = [
-        NSAttributedString.Key.foregroundColor : UIColor.black,
-        NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 16)
+        NSAttributedString.Key.foregroundColor : UIColor.titleColor,
+        NSAttributedString.Key.font : UIFont.smallRateFont
     ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = UIColor.white
+//        view.backgroundColor = .background
         currencyTableView.delegate = self
         currencyTableView.dataSource = self
         currencyTableView.register(MainViewCell.self, forCellReuseIdentifier: "\(MainViewCell.self)")
 
         currencyTableView.separatorStyle = .none
-
+        currencyTableView.backgroundColor = .background
         initNavigation()
         configerTableView()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        
     }
 
     //setup navigationBar
@@ -51,7 +56,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         settingButton.setBackgroundImage(settingButtonImage, for: .normal)
         settingButton.addTarget(self, action: #selector(goToPreferences), for: .touchUpInside)
         settingButton.isUserInteractionEnabled = true
-
+        navigationController?.navigationBar.backgroundColor = .background
         settingButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             settingButton.widthAnchor.constraint(equalToConstant: 20),

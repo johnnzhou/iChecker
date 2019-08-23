@@ -33,7 +33,7 @@ class GraphViewCell: UICollectionViewCell {
     func initContainer() {
         contentView.addSubview(container)
         container.translatesAutoresizingMaskIntoConstraints = false
-        container.backgroundColor = .white
+        container.backgroundColor = .background
 
         NSLayoutConstraint.activate([
             container.topAnchor.constraint(equalTo: contentView.topAnchor),
@@ -61,20 +61,19 @@ class GraphViewCell: UICollectionViewCell {
     func initGraph() {
         container.addSubview(lineChart)
         lineChart.translatesAutoresizingMaskIntoConstraints = false
-
+        lineChart.backgroundColor = .background
 
 
         lineChart.noDataText = "No Data Available."
         lineChart.xAxis.enabled = false
         lineChart.rightAxis.enabled = false
         lineChart.legend.enabled = false
-        lineChart.backgroundColor = .white
         lineChart.setScaleEnabled(false)
         lineChart.leftAxis.drawAxisLineEnabled = false
         lineChart.leftAxis.drawGridLinesEnabled = false
         lineChart.leftAxis.labelPosition = .insideChart
 
-        let marker = BalloonMarker(color: .gray, font: .systemFont(ofSize: 9), textColor: .black, insets: UIEdgeInsets(top: 8, left: 8, bottom: 20, right: 8))
+        let marker = BalloonMarker(color: .black, font: .exSmallTitleFont, textColor: .white, insets: UIEdgeInsets(top: 8, left: 8, bottom: 20, right: 8))
         marker.chartView = lineChart
 
         lineChart.marker = marker

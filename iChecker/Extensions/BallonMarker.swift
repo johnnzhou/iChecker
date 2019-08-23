@@ -182,7 +182,7 @@ open class BalloonMarker: MarkerImage
 
     open override func refreshContent(entry: ChartDataEntry, highlight: Highlight)
     {
-        setLabel(String(entry.y))
+        setLabel(String(format: "%.3f", entry.y))
     }
 
     open func setLabel(_ newLabel: String)

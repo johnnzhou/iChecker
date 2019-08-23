@@ -70,12 +70,12 @@ class MainViewCell: UITableViewCell {
         containerView.addSubview(content)
         content.translatesAutoresizingMaskIntoConstraints = false
 
-        content.backgroundColor = .yellow
+        content.backgroundColor = .white
 
         content.layer.cornerRadius = 10
         content.layer.shadowColor = UIColor.gray.cgColor
         content.layer.shadowOffset = CGSize.zero
-        content.layer.shadowOpacity = 0.3
+        content.layer.shadowOpacity = 0.5
         content.layer.shadowRadius = 5.0
         content.layer.masksToBounds = false
 
@@ -84,18 +84,21 @@ class MainViewCell: UITableViewCell {
 
         content.addSubview(baseName)
         baseName.translatesAutoresizingMaskIntoConstraints = false
-        baseName.textColor = .black
+        baseName.textColor = .titleColor
+        baseName.font = .titleFont
 
         content.addSubview(rate)
         rate.translatesAutoresizingMaskIntoConstraints = false
 
         content.addSubview(high)
         high.translatesAutoresizingMaskIntoConstraints = false
-        high.textColor = .green
+        high.textColor = .veryBlue
+        high.font = .titleFont
 
         content.addSubview(low)
         low.translatesAutoresizingMaskIntoConstraints = false
-        low.textColor = .magenta
+        low.textColor = .veryBlue
+        low.font = .titleFont
 
         content.addSubview(info)
         info.translatesAutoresizingMaskIntoConstraints = false

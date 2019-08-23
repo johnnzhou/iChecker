@@ -25,6 +25,8 @@
 		0458BCC82303C783009540FF /* MainViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0458BCC72303C783009540FF /* MainViewCell.swift */; };
 		045C90BB230A92DF004DBFBF /* BallonMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045C90BA230A92DF004DBFBF /* BallonMarker.swift */; };
 		045F6C3A22F9C5FB00FAC30E /* BaseCurrencyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045F6C3922F9C5FB00FAC30E /* BaseCurrencyViewController.swift */; };
+		046ACC77231018F900E27EA7 /* UIColor+iChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046ACC76231018F900E27EA7 /* UIColor+iChecker.swift */; };
+		046ACC792310292100E27EA7 /* UIFont+iChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046ACC782310292100E27EA7 /* UIFont+iChecker.swift */; };
 		0474D695230CF3CA009DBA35 /* ExchangeRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0474D694230CF3CA009DBA35 /* ExchangeRate.swift */; };
 		04CCBC2D2300089700675350 /* BaseCurrencyPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CCBC2C2300089700675350 /* BaseCurrencyPickerView.swift */; };
 		04CCBC2F23003AB000675350 /* DisclaimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CCBC2E23003AB000675350 /* DisclaimerViewController.swift */; };
@@ -59,6 +61,8 @@
 		0458BCC72303C783009540FF /* MainViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewCell.swift; sourceTree = "<group>"; };
 		045C90BA230A92DF004DBFBF /* BallonMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BallonMarker.swift; sourceTree = "<group>"; };
 		045F6C3922F9C5FB00FAC30E /* BaseCurrencyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCurrencyViewController.swift; sourceTree = "<group>"; };
+		046ACC76231018F900E27EA7 /* UIColor+iChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+iChecker.swift"; sourceTree = "<group>"; };
+		046ACC782310292100E27EA7 /* UIFont+iChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+iChecker.swift"; sourceTree = "<group>"; };
 		0474D694230CF3CA009DBA35 /* ExchangeRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRate.swift; sourceTree = "<group>"; };
 		04CCBC2C2300089700675350 /* BaseCurrencyPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCurrencyPickerView.swift; sourceTree = "<group>"; };
 		04CCBC2E23003AB000675350 /* DisclaimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisclaimerViewController.swift; sourceTree = "<group>"; };
@@ -185,6 +189,8 @@
 			children = (
 				04CCBC3723005EAD00675350 /* String+iChecker.swift */,
 				045C90BA230A92DF004DBFBF /* BallonMarker.swift */,
+				046ACC76231018F900E27EA7 /* UIColor+iChecker.swift */,
+				046ACC782310292100E27EA7 /* UIFont+iChecker.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -320,6 +326,7 @@
 				0474D695230CF3CA009DBA35 /* ExchangeRate.swift in Sources */,
 				04CCBC2D2300089700675350 /* BaseCurrencyPickerView.swift in Sources */,
 				0432421D22F57FF500EF097B /* MainViewController.swift in Sources */,
+				046ACC77231018F900E27EA7 /* UIColor+iChecker.swift in Sources */,
 				045F6C3A22F9C5FB00FAC30E /* BaseCurrencyViewController.swift in Sources */,
 				04FBE4222307F85800F44CEA /* GraphViewCell.swift in Sources */,
 				0410A80422F6884F00678085 /* SettingNotificationViewCell.swift in Sources */,
@@ -336,6 +343,7 @@
 				0410A80822F696B700678085 /* NotificationTime.swift in Sources */,
 				04CCBC3823005EAD00675350 /* String+iChecker.swift in Sources */,
 				04CCBC332300489E00675350 /* SpecialThanksViewController.swift in Sources */,
+				046ACC792310292100E27EA7 /* UIFont+iChecker.swift in Sources */,
 				0451102F2307DFB9005E8A75 /* SubMainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

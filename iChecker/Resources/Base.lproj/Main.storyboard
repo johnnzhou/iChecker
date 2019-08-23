@@ -23,7 +23,7 @@
                                 <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7WW-is-azv">
-                                <rect key="frame" x="0.0" y="185" width="414" height="671"/>
+                                <rect key="frame" x="0.0" y="140" width="414" height="716"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="pf1-Um-jr6">
@@ -39,10 +39,10 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="7WW-is-azv" secondAttribute="bottom" constant="40" id="DAI-vn-hgh"/>
-                            <constraint firstItem="7WW-is-azv" firstAttribute="trailing" secondItem="PQr-Ze-W5v" secondAttribute="trailing" id="Zir-JX-3ZQ"/>
-                            <constraint firstItem="7WW-is-azv" firstAttribute="leading" secondItem="PQr-Ze-W5v" secondAttribute="leading" id="bdJ-FK-JIr"/>
-                            <constraint firstItem="7WW-is-azv" firstAttribute="top" secondItem="PQr-Ze-W5v" secondAttribute="top" constant="45" id="qfo-66-ZyD"/>
+                            <constraint firstItem="7WW-is-azv" firstAttribute="leading" secondItem="PQr-Ze-W5v" secondAttribute="leading" id="NoK-24-gEu"/>
+                            <constraint firstItem="7WW-is-azv" firstAttribute="top" secondItem="PQr-Ze-W5v" secondAttribute="top" id="P0q-Nw-2iI"/>
+                            <constraint firstAttribute="bottom" secondItem="7WW-is-azv" secondAttribute="bottom" constant="40" id="STS-ds-NDf"/>
+                            <constraint firstItem="7WW-is-azv" firstAttribute="trailing" secondItem="PQr-Ze-W5v" secondAttribute="trailing" id="dIp-gv-kde"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PQr-Ze-W5v"/>
                     </view>

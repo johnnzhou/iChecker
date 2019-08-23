@@ -24,23 +24,23 @@ class SubMainViewController: UIViewController {
     var rates: List<Double>? = nil
 
     let numberAttribute = [
-        NSAttributedString.Key.foregroundColor : UIColor.cyan,
-        NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 30)
+        NSAttributedString.Key.foregroundColor : UIColor.veryBlue,
+        NSAttributedString.Key.font : UIFont.someMediumRateFont
     ]
 
     let smallNumberAttribute = [
-        NSAttributedString.Key.foregroundColor : UIColor.black,
-        NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 20)
+        NSAttributedString.Key.foregroundColor : UIColor.titleColor,
+        NSAttributedString.Key.font : UIFont.smallRateFont
     ]
 
     let rateAttribute = [
-        NSAttributedString.Key.foregroundColor : UIColor.cyan,
-        NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 50)
+        NSAttributedString.Key.foregroundColor : UIColor.titleColor,
+        NSAttributedString.Key.font : UIFont.LargeRateFont
     ]
 
     let smallRateAttribute = [
-        NSAttributedString.Key.foregroundColor : UIColor.black,
-        NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 20)
+        NSAttributedString.Key.foregroundColor : UIColor.titleColor,
+        NSAttributedString.Key.font : UIFont.somewhatSmallFont
     ]
 
     init(id: String, data: ExchangeRate) {
@@ -64,7 +64,7 @@ class SubMainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .clear
+        view.backgroundColor = .background
         initNavigation()
         initCollectionView()
     }
@@ -80,7 +80,6 @@ class SubMainViewController: UIViewController {
         view.addSubview(collectionView)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
 
-        collectionView.backgroundColor = .white
         collectionView.delegate = self
         collectionView.dataSource = self
 
@@ -92,6 +91,7 @@ class SubMainViewController: UIViewController {
         ])
 
         collectionView.contentInset = UIEdgeInsets(top: 20, left: 12, bottom: 40, right: 12)
+        collectionView.backgroundColor = .background
 
         collectionView.register(HistoricalDataViewCell.self, forCellWithReuseIdentifier: "\(HistoricalDataViewCell.self)")
         collectionView.register(GraphViewCell.self, forCellWithReuseIdentifier: "\(GraphViewCell.self)")
@@ -102,10 +102,10 @@ extension SubMainViewController {
     func attributedString(first: String, decimal: String) -> NSAttributedString {
         let result = NSMutableAttributedString(string: "")
 
-        result.append(NSAttributedString(string: first, attributes: numberAttribute))
-        result.append(NSAttributedString(string: ".", attributes: numberAttribute))
-        result.append(NSAttributedString(string: decimal, attributes: smallNumberAttribute))
-        result.append(NSAttributedString(string: "%", attributes: numberAttribute))
+        result.append(NSAttributedString(string: first, attributes: smallNumberAttribute))
+        result.append(NSAttributedString(string: ".", attributes: smallNumberAttribute))
+        result.append(NSAttributedString(string: decimal, attributes: numberAttribute))
+        result.append(NSAttributedString(string: "%", attributes: smallNumberAttribute))
         return result
     }
 
@@ -181,20 +181,21 @@ extension SubMainViewController: UICollectionViewDataSource {
             let dataSet = LineChartDataSet(entries: lineChartEntry, label: "")
             dataSet.mode = .cubicBezier
             dataSet.drawCirclesEnabled = false
-            dataSet.lineWidth = 1.8
-            dataSet.circleRadius = 4
-            dataSet.setCircleColor(.white)
-            let gradient = [ChartColorTemplates.colorFromString("#DBEBC2").cgColor,
-                            ChartColorTemplates.colorFromString("#ACDBC9").cgColor]
+            dataSet.lineWidth = 2
+            dataSet.setColors([.someBlue, .veryBlue], alpha: 0.6)
+//            dataSet.circleRadius = 10
+//            dataSet.setCircleColor(.someBlue)
+            let gradient = [ChartColorTemplates.colorFromString("#E9EBED").cgColor,
+                            ChartColorTemplates.colorFromString("#f2f3f4").cgColor]
             let gradientColor = CGGradient(colorsSpace: nil, colors: gradient as CFArray, locations: nil)!
-            dataSet.fillAlpha = 1
-            dataSet.fill = Fill(linearGradient: gradientColor, angle: 90)
+            dataSet.fillAlpha = 0.5
+            dataSet.fill = Fill(linearGradient: gradientColor, angle: 270)
             dataSet.drawFilledEnabled = true
             dataSet.drawHorizontalHighlightIndicatorEnabled = false
-            dataSet.valueFont = .systemFont(ofSize: 9)
+            dataSet.valueFont = .exSmallTitleFont
 
             let data = LineChartData(dataSet: dataSet)
-            data.setValueFont(UIFont(name: "HelveticaNeue-Light", size: 9)!)
+            data.setValueFont(UIFont.exSmallTitleFont)
             data.setDrawValues(false)
 
             cell.lineChart.animate(xAxisDuration: 1.5, easingOption: .easeInQuad)

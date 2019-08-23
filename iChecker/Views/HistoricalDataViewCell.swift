@@ -38,7 +38,6 @@ class HistoricalDataViewCell: UICollectionViewCell {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-
         initContainer()
         initMain()
         initTrend()
@@ -49,7 +48,7 @@ class HistoricalDataViewCell: UICollectionViewCell {
     func initContainer(){
         contentView.addSubview(mainContainer)
         mainContainer.translatesAutoresizingMaskIntoConstraints = false
-        mainContainer.backgroundColor = .green
+        mainContainer.backgroundColor = .white
         mainContainer.layer.cornerRadius = 10
         mainContainer.layer.shadowColor = UIColor.gray.cgColor
         mainContainer.layer.shadowOffset = CGSize.zero
@@ -59,7 +58,7 @@ class HistoricalDataViewCell: UICollectionViewCell {
 
         contentView.addSubview(trendContainer)
         trendContainer.translatesAutoresizingMaskIntoConstraints = false
-        trendContainer.backgroundColor = .blue
+        trendContainer.backgroundColor = .white
         trendContainer.layer.cornerRadius = 10
         trendContainer.layer.shadowColor = UIColor.gray.cgColor
         trendContainer.layer.shadowOffset = CGSize.zero
@@ -69,7 +68,7 @@ class HistoricalDataViewCell: UICollectionViewCell {
 
         contentView.addSubview(shareContainer)
         shareContainer.translatesAutoresizingMaskIntoConstraints = false
-        shareContainer.backgroundColor = .gray
+        shareContainer.backgroundColor = .white
         shareContainer.layer.cornerRadius = 10
         shareContainer.layer.shadowColor = UIColor.gray.cgColor
         shareContainer.layer.shadowOffset = CGSize.zero
@@ -79,7 +78,7 @@ class HistoricalDataViewCell: UICollectionViewCell {
 
         contentView.addSubview(historicalDataContainer)
         historicalDataContainer.translatesAutoresizingMaskIntoConstraints = false
-        historicalDataContainer.backgroundColor = .yellow
+        historicalDataContainer.backgroundColor = .white
         historicalDataContainer.layer.cornerRadius = 10
         historicalDataContainer.layer.shadowColor = UIColor.gray.cgColor
         historicalDataContainer.layer.shadowOffset = CGSize.zero
@@ -115,16 +114,24 @@ class HistoricalDataViewCell: UICollectionViewCell {
         mainContainer.addSubview(realTimeLabel)
         realTimeLabel.translatesAutoresizingMaskIntoConstraints = false
         realTimeLabel.text = "Real time:"
+        realTimeLabel.textColor = .someGray
+        realTimeLabel.font = .titleFont
 
         mainContainer.addSubview(rate)
         rate.translatesAutoresizingMaskIntoConstraints = false
         mainContainer.addSubview(dailyLabel)
         dailyLabel.translatesAutoresizingMaskIntoConstraints = false
         dailyLabel.text = "Daily: "
+        dailyLabel.textColor = .titleColor
+        dailyLabel.font = .titleFont
         mainContainer.addSubview(dailyLow)
         dailyLow.translatesAutoresizingMaskIntoConstraints = false
+        dailyLow.textColor = .forestGreen
+        dailyLow.font = .smallTitleFont
         mainContainer.addSubview(dailyHigh)
         dailyHigh.translatesAutoresizingMaskIntoConstraints = false
+        dailyHigh.textColor = .forestGreen
+        dailyHigh.font = .smallTitleFont
 
         NSLayoutConstraint.activate([
             realTimeLabel.topAnchor.constraint(equalTo: mainContainer.topAnchor, constant: 10),
@@ -164,6 +171,8 @@ class HistoricalDataViewCell: UICollectionViewCell {
         shareContainer.addSubview(shareLabel)
         shareLabel.translatesAutoresizingMaskIntoConstraints = false
         shareLabel.text = "Share"
+        shareLabel.textColor = .titleColor
+        shareLabel.font = .titleFont
 
 
 
@@ -180,24 +189,33 @@ class HistoricalDataViewCell: UICollectionViewCell {
     func initHistoricalData() {
         historicalDataContainer.addSubview(range)
         range.translatesAutoresizingMaskIntoConstraints = false
+        range.font = .smallRateFont
+        range.textColor = .titleColor
         historicalDataContainer.addSubview(rangeMax)
         rangeMax.translatesAutoresizingMaskIntoConstraints = false
+        rangeMax.textColor = .someBlue
+        rangeMax.font = .titleFont
         historicalDataContainer.addSubview(rangeMin)
         rangeMin.translatesAutoresizingMaskIntoConstraints = false
+        rangeMin.textColor = .someBlue
+        rangeMin.font = .titleFont
         historicalDataContainer.addSubview(average)
         average.translatesAutoresizingMaskIntoConstraints = false
+        average.font = .titleFont
+        average.textColor = .someBeige
         historicalDataContainer.addSubview(averageChange)
         averageChange.translatesAutoresizingMaskIntoConstraints = false
-        averageChange.text = "Avg Change: " + "0.007"
+        averageChange.font = .titleFont
+        averageChange.textColor = .someBeige
 
         NSLayoutConstraint.activate([
             range.topAnchor.constraint(equalTo: historicalDataContainer.topAnchor, constant: 10),
             range.leadingAnchor.constraint(equalTo: historicalDataContainer.leadingAnchor, constant: 15),
-            rangeMax.topAnchor.constraint(equalTo: range.bottomAnchor, constant: 30),
+            rangeMax.topAnchor.constraint(equalTo: range.bottomAnchor, constant: 15),
             rangeMax.leadingAnchor.constraint(equalTo: historicalDataContainer.leadingAnchor, constant: 15),
             average.topAnchor.constraint(equalTo: rangeMax.bottomAnchor, constant: 10),
             average.leadingAnchor.constraint(equalTo: historicalDataContainer.leadingAnchor, constant: 15),
-            rangeMin.topAnchor.constraint(equalTo: range.bottomAnchor, constant: 30),
+            rangeMin.topAnchor.constraint(equalTo: range.bottomAnchor, constant: 15),
             rangeMin.leadingAnchor.constraint(equalTo: rangeMax.trailingAnchor, constant: 20),
             averageChange.topAnchor.constraint(equalTo: rangeMin.bottomAnchor, constant: 10),
             averageChange.leadingAnchor.constraint(equalTo: average.trailingAnchor, constant: 20),
