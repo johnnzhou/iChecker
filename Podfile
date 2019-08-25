@@ -11,5 +11,5 @@ target 'iChecker' do
     pod 'RealmSwift'
     pod 'SwiftyJSON'
     pod 'PromiseKit/Alamofire'
-
+    pod 'SVProgressHUD'
 end
