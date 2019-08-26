@@ -40,14 +40,14 @@ enum About: Int, CaseIterable {
 
 enum General: Int, CaseIterable {
     case Notification = 0
-    case BaseCurrency
+//    case BaseCurrency
 
     public var generalString: String {
         switch self {
         case .Notification:
             return "Notification"
-        case .BaseCurrency:
-            return "Base Currency"
+//        case .BaseCurrency:
+//            return "Base Currency"
         }
     }
 }
@@ -156,10 +156,10 @@ extension SettingsViewController {
             case .Notification:
                 let vc = SettingNotificationViewController()
                 navigationController?.pushViewController(vc, animated: true)
-            case .BaseCurrency:
-                let vc = BaseCurrencyViewController()
-                vc.modalPresentationStyle = .overFullScreen
-                present(vc, animated: true, completion: nil)
+//            case .BaseCurrency:
+//                let vc = BaseCurrencyViewController()
+//                vc.modalPresentationStyle = .overFullScreen
+//                present(vc, animated: true, completion: nil)
             }
 
         case .about:

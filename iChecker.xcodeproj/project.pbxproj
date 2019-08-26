@@ -40,6 +40,18 @@
 		D9EDD029564AAD59C49A6F62 /* Pods_iChecker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D513236A9FA649DD90853078 /* Pods_iChecker.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXBuildRule section */
+		04FC50CB2313684E0089FB98 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			fileType = file.bplist;
+			isEditable = 1;
+			outputFiles = (
+			);
+			script = "# builtin-copyPlist\n";
+		};
+/* End PBXBuildRule section */
+
 /* Begin PBXFileReference section */
 		0410A80322F6884F00678085 /* SettingNotificationViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingNotificationViewCell.swift; sourceTree = "<group>"; };
 		0410A80522F688C600678085 /* SettingNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingNotificationViewController.swift; sourceTree = "<group>"; };
@@ -218,6 +230,7 @@
 				0E4184C7BA87F9D28676568E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
+				04FC50CB2313684E0089FB98 /* PBXBuildRule */,
 			);
 			dependencies = (
 			);

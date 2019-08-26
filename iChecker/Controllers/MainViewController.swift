@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import UserNotifications
 import RealmSwift
 import PromiseKit
 import SwiftyJSON
 import SVProgressHUD
 
-class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UNUserNotificationCenterDelegate {
     @IBOutlet weak var currencyTableView: UITableView!
 
     let realm = try! Realm()
@@ -20,6 +21,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var currencies = [String]()
     var id: String? = nil
     var finalData: ExchangeRate!
+    let userNotification = UNUserNotificationCenter.current()
 
     let numberAttribute = [
         NSAttributedString.Key.foregroundColor : UIColor.titleColor,
@@ -133,6 +135,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             userDefaults.setValue(true, forKey: "isAppAlreadyLaunchedOnce")
             userDefaults.setValue(["CAD", "CNY", "EUR", "JPY", "HKD", "USD", "GBP"], forKey: "currencies")
             userDefaults.setValue(["USD-CNY", "CNY-HKD", "CNY-JPY", "USD-EUR", "USD-GBP", "USD-JPY"], forKey: "pairs")
+            userDefaults.set(["9:00":true, "12:00":false, "15:00":false, "18:00":false, "isExpanded":false], forKey: "schedule")
             return false
         }
     }
@@ -150,6 +153,16 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        let options: UNAuthorizationOptions = [.alert, .sound, .badge]
+
+        userNotification.delegate = self
+        userNotification.requestAuthorization(options: options) {
+            (didAllow, error) in
+            if !didAllow {
+                print("User has declined notifications")
+            }
+        }
 
         currencyTableView.delegate = self
         currencyTableView.dataSource = self
