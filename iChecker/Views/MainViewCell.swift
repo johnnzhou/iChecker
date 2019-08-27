@@ -12,14 +12,14 @@ class MainViewCell: UITableViewCell {
 
     let containerView = UIView()
     let content = UIView()
-    let flag = UIImageView()
+    let baseFlag = UIImageView()
     let baseName = UILabel()
     let symbolName = UILabel()
     let symbolFlag = UIImageView()
     let rate = UILabel()
     let high = UILabel()
     let low = UILabel()
-    let info = UIButton()
+//    let info = UIButton()
     let trendArrow = UIImageView()
 
     let trend: Bool = true
@@ -81,13 +81,21 @@ class MainViewCell: UITableViewCell {
         content.layer.shadowRadius = 5.0
         content.layer.masksToBounds = false
 
-        content.addSubview(flag)
-        flag.translatesAutoresizingMaskIntoConstraints = false
+        content.addSubview(baseFlag)
+        baseFlag.translatesAutoresizingMaskIntoConstraints = false
+
+        content.addSubview(symbolFlag)
+        symbolFlag.translatesAutoresizingMaskIntoConstraints = false
 
         content.addSubview(baseName)
         baseName.translatesAutoresizingMaskIntoConstraints = false
         baseName.textColor = .titleColor
         baseName.font = .titleFont
+
+        content.addSubview(symbolName)
+        symbolName.translatesAutoresizingMaskIntoConstraints = false
+        symbolName.textColor = .titleColor
+        symbolName.font = .titleFont
 
         content.addSubview(rate)
         rate.translatesAutoresizingMaskIntoConstraints = false
@@ -95,16 +103,16 @@ class MainViewCell: UITableViewCell {
         content.addSubview(high)
         high.translatesAutoresizingMaskIntoConstraints = false
         high.textColor = .veryBlue
-        high.font = .titleFont
+        high.font = .smallTitleFont
 
         content.addSubview(low)
         low.translatesAutoresizingMaskIntoConstraints = false
         low.textColor = .veryBlue
-        low.font = .titleFont
+        low.font = .smallTitleFont
 
-        content.addSubview(info)
-        info.translatesAutoresizingMaskIntoConstraints = false
-        info.setImage(#imageLiteral(resourceName: "info"), for: .normal)
+//        content.addSubview(info)
+//        info.translatesAutoresizingMaskIntoConstraints = false
+//        info.setImage(#imageLiteral(resourceName: "info"), for: .normal)
 //        info.addTarget(self, action: #selector(handleInfoButtonPressed(_:)), for: .touchUpInside)
 
         content.addSubview(trendArrow)
@@ -115,22 +123,28 @@ class MainViewCell: UITableViewCell {
             content.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -20),
             content.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 10),
             content.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -10),
-            flag.centerYAnchor.constraint(equalTo: content.centerYAnchor, constant: -30),
-            flag.leadingAnchor.constraint(equalTo: content.leadingAnchor, constant: 12),
-            flag.widthAnchor.constraint(equalToConstant: 36),
-            flag.heightAnchor.constraint(equalToConstant: 36),
-            baseName.centerYAnchor.constraint(equalTo: content.centerYAnchor, constant: -30),
-            baseName.leadingAnchor.constraint(equalTo: flag.trailingAnchor, constant: 10),
+            baseFlag.centerYAnchor.constraint(equalTo: content.centerYAnchor, constant: -20),
+            baseFlag.leadingAnchor.constraint(equalTo: content.leadingAnchor, constant: 12),
+            baseFlag.widthAnchor.constraint(equalToConstant: 36),
+            baseFlag.heightAnchor.constraint(equalToConstant: 36),
+            symbolFlag.centerYAnchor.constraint(equalTo: content.centerYAnchor, constant: 20),
+            symbolFlag.leadingAnchor.constraint(equalTo: content.leadingAnchor, constant: 12),
+            symbolFlag.widthAnchor.constraint(equalToConstant: 36),
+            symbolFlag.heightAnchor.constraint(equalToConstant: 36),
+            baseName.centerYAnchor.constraint(equalTo: content.centerYAnchor, constant: -20),
+            baseName.leadingAnchor.constraint(equalTo: baseFlag.trailingAnchor, constant: 10),
+            symbolName.centerYAnchor.constraint(equalTo: content.centerYAnchor, constant: 20),
+            symbolName.leadingAnchor.constraint(equalTo: symbolFlag.trailingAnchor, constant: 10),
             rate.topAnchor.constraint(equalTo: content.topAnchor, constant: 20),
             rate.leadingAnchor.constraint(equalTo: baseName.trailingAnchor, constant: 30),
-            high.leadingAnchor.constraint(equalTo: baseName.trailingAnchor, constant: 10),
+            high.leadingAnchor.constraint(equalTo: baseName.trailingAnchor, constant: 30),
             high.topAnchor.constraint(equalTo: content.bottomAnchor, constant: -30),
             low.leadingAnchor.constraint(equalTo: high.trailingAnchor, constant: 20),
             low.topAnchor.constraint(equalTo: content.bottomAnchor, constant: -30),
-            info.widthAnchor.constraint(equalToConstant: 36),
-            info.heightAnchor.constraint(equalToConstant: 36),
-            info.centerYAnchor.constraint(equalTo: content.centerYAnchor),
-            info.trailingAnchor.constraint(equalTo: content.trailingAnchor, constant: -10),
+//            info.widthAnchor.constraint(equalToConstant: 36),
+//            info.heightAnchor.constraint(equalToConstant: 36),
+//            info.centerYAnchor.constraint(equalTo: content.centerYAnchor),
+//            info.trailingAnchor.constraint(equalTo: content.trailingAnchor, constant: -10),
             trendArrow.leadingAnchor.constraint(equalTo: rate.trailingAnchor, constant: 15),
             trendArrow.topAnchor.constraint(equalTo: content.topAnchor, constant: 40)
         ])

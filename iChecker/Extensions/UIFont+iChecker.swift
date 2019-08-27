@@ -12,7 +12,7 @@ import UIKit
 extension UIFont {
 
     class var exSmallTitleFont: UIFont {
-        return UIFont(name: "Avenir-Black", size: 12) ?? systemFont(ofSize: 10)
+        return UIFont(name: "Avenir-Black", size: 12) ?? systemFont(ofSize: 12)
     }
 
     class var smallTitleFont: UIFont {
@@ -24,7 +24,7 @@ extension UIFont {
     }
 
     class var rateFont: UIFont {
-        return UIFont(name: "Avenir-Heavy", size: 44) ?? systemFont(ofSize: 44)
+        return UIFont(name: "Avenir-Heavy", size: 40) ?? systemFont(ofSize: 40)
     }
 
     class var mediumRateFont: UIFont {
@@ -36,7 +36,7 @@ extension UIFont {
     }
 
     class var LargeRateFont: UIFont {
-        return UIFont(name: "Avenir-Heavy", size: 56) ?? systemFont(ofSize: 56)
+        return UIFont(name: "Avenir-Heavy", size: 48) ?? systemFont(ofSize: 50)
     }
 
     class var somewhatSmallFont: UIFont {
@@ -44,6 +44,6 @@ extension UIFont {
     }
 
     class var smallRateFont: UIFont {
-        return UIFont(name: "Avenir-Heavy", size: 20) ?? systemFont(ofSize: 20)
+        return UIFont(name: "Avenir-Heavy", size: 18) ?? systemFont(ofSize: 18)
     }
 }

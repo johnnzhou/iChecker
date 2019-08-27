@@ -19,7 +19,6 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     let realm = try! Realm()
     var pairs = [String]()
     var currencies = [String]()
-    var id: String? = nil
     var finalData: ExchangeRate!
     let userNotification = UNUserNotificationCenter.current()
 
@@ -41,14 +40,15 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 Alamofire.request(url, method: .get).responseData()
             }.done() { data in
                 let json = try JSON(data: data.data)
-                let rate = json["rates"]["\(symbol)"].rawValue as! Double
+                let rate = (json["rates"]["\(symbol)"].rawValue as! Double) * 100.0
                 var result: ExchangeRate!
                 if let currenciesRate = self.realm.object(ofType: ExchangeRate.self, forPrimaryKey: "\(base)-\(symbol)") {
                     result = currenciesRate
                 }
+                let count = result.rates.count
                 do {
                     try self.realm.write {
-                        result.changeRate = (rate - result.now) / result.now * 100.0
+                        result.changeRate = (rate - result.rates[count - 2]) / result.rates[count - 2] * 100.0
                         result.now = rate
                         if result.dailyHigh < rate {
                             result.dailyHigh = rate
@@ -122,7 +122,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 reverseData.changeRate = (  finalResult.2[count - 1] - finalResult.2[count - 2]  ) / finalResult.2[count - 1] * 100.0
 
                 data.trend = (finalResult.1[count - 1] - finalResult.1[count - 2]) > 0
-                reverseData.trend = ( finalResult.2[count - 1] - finalResult.2[count - 2] ) > 0
+                reverseData.trend = !data.trend 
 
                 data.now = finalResult.1[count - 1]
                 reverseData.now = finalResult.2[count - 1]
@@ -310,15 +310,17 @@ extension MainViewController {
         }
         pairs = keys as! [String]
         let primaryKey = keys[indexPath.row] as! String
-        id = primaryKey
         if let rates = realm.object(ofType: ExchangeRate.self, forPrimaryKey: primaryKey) {
             finalData = rates
         }
 
         if finalData != nil {
-            cell.flag.image = finalData.base?.flag.image()
+            cell.baseFlag.image = finalData.base?.flag.image()
             cell.baseName.text = finalData.base?.abbreName
-            let realTime = String(format: "%.3f", finalData.now).split(separator: ".")
+            cell.symbolFlag.image = finalData.symbol?.flag.image()
+            cell.symbolName.text = finalData.symbol?.abbreName
+
+            let realTime = String(format: "%.2f", finalData.now).split(separator: ".")
             cell.rate.attributedText = attributedString(first: String(realTime[0]), decimal: String(realTime[1]))
             cell.high.text = "H: " + String(format: "%.2f", finalData.dailyHigh)
             cell.low.text = "L: " + String(format: "%.2f", finalData.dailyLow)
@@ -331,10 +333,8 @@ extension MainViewController {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let id = id else {
-            return
-        }
-        let vc = SubMainViewController(id: id, data: finalData)
+        let id = pairs[indexPath.row]
+        let vc = SubMainViewController(id: id)
         navigationController?.pushViewController(vc, animated: true)
         tableView.deselectRow(at: indexPath, animated: true)
     }

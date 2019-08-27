@@ -102,7 +102,7 @@ class HistoricalDataViewCell: UICollectionViewCell {
             shareContainer.heightAnchor.constraint(equalToConstant: 40),
             shareContainer.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
             historicalDataContainer.topAnchor.constraint(equalTo: mainContainer.bottomAnchor, constant: 50),
-            historicalDataContainer.heightAnchor.constraint(equalToConstant: 120),
+            historicalDataContainer.heightAnchor.constraint(equalToConstant: 150),
             historicalDataContainer.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             historicalDataContainer.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             historicalDataContainer.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10)
@@ -136,14 +136,14 @@ class HistoricalDataViewCell: UICollectionViewCell {
         NSLayoutConstraint.activate([
             realTimeLabel.topAnchor.constraint(equalTo: mainContainer.topAnchor, constant: 10),
             realTimeLabel.leadingAnchor.constraint(equalTo: mainContainer.leadingAnchor, constant: 15),
-            rate.topAnchor.constraint(equalTo: realTimeLabel.bottomAnchor, constant: 20),
+            rate.topAnchor.constraint(equalTo: realTimeLabel.bottomAnchor, constant: 10),
             rate.centerXAnchor.constraint(equalTo: mainContainer.centerXAnchor),
             dailyLabel.topAnchor.constraint(equalTo: mainContainer.bottomAnchor, constant: -50),
             dailyLabel.leadingAnchor.constraint(equalTo: mainContainer.leadingAnchor, constant: 15),
             dailyHigh.topAnchor.constraint(equalTo: dailyLabel.bottomAnchor, constant: 5),
             dailyHigh.leadingAnchor.constraint(equalTo: mainContainer.leadingAnchor, constant: 15),
             dailyLow.topAnchor.constraint(equalTo: dailyLabel.bottomAnchor, constant: 5),
-            dailyLow.leadingAnchor.constraint(equalTo: dailyHigh.trailingAnchor, constant: 20),
+            dailyLow.leadingAnchor.constraint(equalTo: dailyHigh.trailingAnchor, constant: 10),
         ])
     }
 
@@ -216,9 +216,9 @@ class HistoricalDataViewCell: UICollectionViewCell {
             average.topAnchor.constraint(equalTo: rangeMax.bottomAnchor, constant: 10),
             average.leadingAnchor.constraint(equalTo: historicalDataContainer.leadingAnchor, constant: 15),
             rangeMin.topAnchor.constraint(equalTo: range.bottomAnchor, constant: 15),
-            rangeMin.leadingAnchor.constraint(equalTo: rangeMax.trailingAnchor, constant: 20),
-            averageChange.topAnchor.constraint(equalTo: rangeMin.bottomAnchor, constant: 10),
-            averageChange.leadingAnchor.constraint(equalTo: average.trailingAnchor, constant: 20),
+            rangeMin.leadingAnchor.constraint(equalTo: rangeMax.trailingAnchor, constant: 40),
+            averageChange.topAnchor.constraint(equalTo: average.bottomAnchor, constant: 10),
+            averageChange.leadingAnchor.constraint(equalTo: historicalDataContainer.leadingAnchor, constant: 15),
         ])
     }
 

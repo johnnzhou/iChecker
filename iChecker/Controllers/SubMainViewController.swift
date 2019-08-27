@@ -20,8 +20,7 @@ class SubMainViewController: UIViewController {
 
     var id: String? = nil
     let realm = try! Realm()
-    var data: ExchangeRate? = nil
-    var rates: List<Double>? = nil
+    var exchangeRate = ExchangeRate()
 
     let numberAttribute = [
         NSAttributedString.Key.foregroundColor : UIColor.veryBlue,
@@ -30,7 +29,7 @@ class SubMainViewController: UIViewController {
 
     let smallNumberAttribute = [
         NSAttributedString.Key.foregroundColor : UIColor.titleColor,
-        NSAttributedString.Key.font : UIFont.smallRateFont
+        NSAttributedString.Key.font : UIFont.smallTitleFont
     ]
 
     let rateAttribute = [
@@ -43,11 +42,12 @@ class SubMainViewController: UIViewController {
         NSAttributedString.Key.font : UIFont.somewhatSmallFont
     ]
 
-    init(id: String, data: ExchangeRate) {
+    init(id: String) {
         super.init(nibName: nil, bundle: nil)
         self.id = id
-        self.data = data
-        self.rates = self.data?.rates
+        if let rate = realm.object(ofType: ExchangeRate.self, forPrimaryKey: id) {
+            exchangeRate = rate
+        }
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -70,10 +70,7 @@ class SubMainViewController: UIViewController {
     }
 
     func initNavigation() {
-        guard let dataList = data else {
-            return
-        }
-        navigationItem.title = "\(dataList.base?.flag ?? "") - \(dataList.symbol?.flag ?? "")"
+        navigationItem.title = "\(exchangeRate.base?.flag ?? "") - \(exchangeRate.symbol?.flag ?? "")"
     }
 
     func initCollectionView() {
@@ -149,32 +146,30 @@ extension SubMainViewController: UICollectionViewDataSource {
         switch sec {
         case .data:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(HistoricalDataViewCell.self)", for: indexPath) as! HistoricalDataViewCell
-            guard let dataList = data else {
-                return cell
-            }
-            let realTime = String(format: "%.3f", dataList.now).split(separator: ".")
-            let trendRate = String(format: "%.3f", dataList.changeRate).split(separator: ".")
+
+            let realTime = String(format: "%.2f", exchangeRate.now).split(separator: ".")
+            let trendRate = String(format: "%.3f", exchangeRate.changeRate).split(separator: ".")
+
             cell.rate.attributedText = attributedRateString(first: String(realTime[0]), decimal: String(realTime[1]))
-            cell.dailyLow.text = "L:" + String(format: "%.3f", dataList.dailyLow)
-            cell.dailyHigh.text = "H: " + String(format: "%.3f", dataList.dailyHigh)
+            cell.dailyLow.text = "L: " + String(format: "%.2f", exchangeRate.dailyLow)
+            cell.dailyHigh.text = "H: " + String(format: "%.2f", exchangeRate.dailyHigh)
             cell.trendRate.attributedText = attributedString(first: String(trendRate[0]), decimal: String(trendRate[1]));
-            cell.trendDirection.image = dataList.trend ? #imageLiteral(resourceName: "increase") : #imageLiteral(resourceName: "decrease")
-            cell.range.text = "\(dataList.dates[0]) -- \(dataList.dates[dataList.dates.count - 1])"
-            cell.rangeMax.text = "Max: " + String(format: "%.3f", dataList.rangeMax)
-            cell.rangeMin.text = "Min: " + String(format: "%.3f", dataList.rangeMin)
-            cell.average.text = "Average: " + String(format: "%.3f", dataList.average)
-            cell.averageChange.text = "Avg Change: " + String(format: "%.3f", dataList.averageChange)
+            cell.trendDirection.image = exchangeRate.trend ? #imageLiteral(resourceName: "increase") : #imageLiteral(resourceName: "decrease")
+            cell.range.text = "\(exchangeRate.dates[0]) -- \(exchangeRate.dates[exchangeRate.dates.count - 1])"
+            cell.rangeMax.text = "Max: " + String(format: "%.2f", exchangeRate.rangeMax)
+            cell.rangeMin.text = "Min: " + String(format: "%.2f", exchangeRate.rangeMin)
+            cell.average.text = "Average: " + String(format: "%.2f", exchangeRate.average)
+            cell.averageChange.text = "Avg Change: " + String(format: "%.2f", exchangeRate.averageChange)
 
             return cell
         case .graph:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(GraphViewCell.self)", for: indexPath) as! GraphViewCell
             cell.delegate = self
-            guard let ratesList = rates else {
-                return cell
-            }
+
+            let ratesList = exchangeRate.rates
             var lineChartEntry = [ChartDataEntry]()
             for i in 0..<dayRange {
-                let value = ChartDataEntry(x: Double(i), y: ratesList[dayRange - 1 - i])
+                let value = ChartDataEntry(x: Double(i), y: ratesList[ratesList.count - dayRange + i])
                 lineChartEntry.append(value)
             }
 
