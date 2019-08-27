@@ -41,18 +41,14 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 Alamofire.request(url, method: .get).responseData()
             }.done() { data in
                 let json = try JSON(data: data.data)
-                var rate = json["rates"]["\(symbol)"].rawValue as! Double
+                let rate = json["rates"]["\(symbol)"].rawValue as! Double
                 var result: ExchangeRate!
                 if let currenciesRate = self.realm.object(ofType: ExchangeRate.self, forPrimaryKey: "\(base)-\(symbol)") {
-                    result = currenciesRate
-                } else {
-                    let currenciesRate = self.realm.object(ofType: ExchangeRate.self, forPrimaryKey: "\(symbol)-\(base)")
-                    rate = 1.0 / rate
                     result = currenciesRate
                 }
                 do {
                     try self.realm.write {
-                        result.changeRate = (rate - result.now) / result.now * 100
+                        result.changeRate = (rate - result.now) / result.now * 100.0
                         result.now = rate
                         if result.dailyHigh < rate {
                             result.dailyHigh = rate
@@ -98,23 +94,55 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 symbolCountry.abbreName = symbol
 
                 let data = ExchangeRate()
+                let reverseData = ExchangeRate()
+                let count = finalResult.1.count
+
                 data.baseSymbol = "\(base)-\(symbol)"
+                reverseData.baseSymbol = "\(symbol)-\(base)"
+
                 data.base = baseCountry
+                reverseData.base = symbolCountry
+
                 data.symbol = symbolCountry
+                reverseData.symbol = baseCountry
+
                 data.dates = finalResult.0
+                reverseData.dates = finalResult.0
+
                 data.rates = finalResult.1
-                data.dailyLow = finalResult.1.min() ?? 10000
-                data.dailyHigh = finalResult.1.max() ?? 0
-                data.changeRate = (finalResult.1[finalResult.1.count - 1] - finalResult.1[finalResult.1.count - 2]) / finalResult.1[finalResult.1.count - 1] * 100
-                data.trend = (finalResult.1[finalResult.1.count - 1] - finalResult.1[finalResult.1.count - 2]) > 0
-                data.now = finalResult.1[finalResult.1.count - 1]
+                reverseData.rates = finalResult.2
+
+                data.dailyLow = finalResult.1[count - 1]
+                reverseData.dailyLow = finalResult.2[count - 1]
+
+                data.dailyHigh = finalResult.1[count - 1]
+                reverseData.dailyHigh = finalResult.2[count - 1]
+
+                data.changeRate = (finalResult.1[count - 1] - finalResult.1[count - 2]) / finalResult.1[count - 1] * 100.0
+                reverseData.changeRate = (  finalResult.2[count - 1] - finalResult.2[count - 2]  ) / finalResult.2[count - 1] * 100.0
+
+                data.trend = (finalResult.1[count - 1] - finalResult.1[count - 2]) > 0
+                reverseData.trend = ( finalResult.2[count - 1] - finalResult.2[count - 2] ) > 0
+
+                data.now = finalResult.1[count - 1]
+                reverseData.now = finalResult.2[count - 1]
+
                 data.rangeMax = data.rates.max()!
+                reverseData.rangeMax = reverseData.rates.max()!
+
                 data.rangeMin = data.rates.min()!
+                reverseData.rangeMin = reverseData.rates.min()!
+
                 data.average = data.rates.average()!
-                data.averageChange = (data.rates.map { abs(data.average - $0) }.reduce(0, +)) / Double(data.rates.count)
+                reverseData.average = reverseData.rates.average()!
+
+                data.averageChange = (data.rates.map { abs(data.average - $0) }.reduce(0, +)) / Double(count)
+                reverseData.averageChange = (reverseData.rates.map { abs(reverseData.average - $0) }.reduce(0, +)) / Double(count)
+
                 do {
                     try self.realm.write {
                         self.realm.add(data)
+                        self.realm.add(reverseData)
                     }
                 } catch {
                     print("Error in saving data to Realm \(error)")
@@ -140,15 +168,17 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
     }
 
-    private func sortData(result: Array<(key: String, value: Double)>) -> (List<String>,List<Double>) {
+    private func sortData(result: Array<(key: String, value: Double)>) -> (List<String>,List<Double>, List<Double>) {
         let dates = List<String>()
         let rates = List<Double>()
+        let reversedRates = List<Double>()
         for pair in result {
             dates.append(pair.key)
             rates.append(pair.value * 100)
+            reversedRates.append( 1.0 / pair.value * 100.0)
         }
 
-        return (dates, rates)
+        return (dates, rates, reversedRates)
     }
     
     override func viewDidLoad() {
@@ -185,7 +215,9 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
 
         if isAppAlreadyLaunchedOnce() {
+            #if DEBUG
             print("launched once")
+            #endif
             guard let keys = UserDefaults.standard.array(forKey: "pairs") else {
                 fatalError("Unable to retrieve plist info")
             }
@@ -221,7 +253,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func initNavigation() {
 
         navigationItem.title = "Currency"
-        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.prefersLargeTitles = false
 
         let settingButtonImage = UIImage(named: "settings.png")?.withRenderingMode(.alwaysOriginal)
         let settingButton = UIButton(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
@@ -278,15 +310,8 @@ extension MainViewController {
         }
         pairs = keys as! [String]
         let primaryKey = keys[indexPath.row] as! String
-        var optional = [String]()
-        optional.append(String(primaryKey.split(separator: "-")[1]))
-        optional.append(String(primaryKey.split(separator: "-")[0]))
-        let optionalKey = optional.joined(separator: "-")
         id = primaryKey
         if let rates = realm.object(ofType: ExchangeRate.self, forPrimaryKey: primaryKey) {
-            finalData = rates
-        }
-        if let rates = realm.object(ofType: ExchangeRate.self, forPrimaryKey: optionalKey) {
             finalData = rates
         }
 
@@ -295,8 +320,8 @@ extension MainViewController {
             cell.baseName.text = finalData.base?.abbreName
             let realTime = String(format: "%.3f", finalData.now).split(separator: ".")
             cell.rate.attributedText = attributedString(first: String(realTime[0]), decimal: String(realTime[1]))
-            cell.high.text = "H: " + String(format: "%.3f", finalData.dailyHigh)
-            cell.low.text = "L: " + String(format: "%.3f", finalData.dailyLow)
+            cell.high.text = "H: " + String(format: "%.2f", finalData.dailyHigh)
+            cell.low.text = "L: " + String(format: "%.2f", finalData.dailyLow)
             cell.trendArrow.image = finalData.trend ? #imageLiteral(resourceName: "increase") : #imageLiteral(resourceName: "decrease")
         }
 

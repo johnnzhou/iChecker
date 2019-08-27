@@ -14,6 +14,8 @@ class MainViewCell: UITableViewCell {
     let content = UIView()
     let flag = UIImageView()
     let baseName = UILabel()
+    let symbolName = UILabel()
+    let symbolFlag = UIImageView()
     let rate = UILabel()
     let high = UILabel()
     let low = UILabel()
