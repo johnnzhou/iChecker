@@ -50,13 +50,12 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     try self.realm.write {
                         result.changeRate = (rate - result.rates[count - 2]) / result.rates[count - 2] * 100.0
                         result.now = rate
+                        result.trend = result.changeRate > 0
                         if result.dailyHigh < rate {
                             result.dailyHigh = rate
-                            result.trend = true
                         }
                         if result.dailyLow > rate {
                             result.dailyLow = rate
-                            result.trend = false
                         }
                     }
                 } catch {
@@ -121,7 +120,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 data.changeRate = (finalResult.1[count - 1] - finalResult.1[count - 2]) / finalResult.1[count - 1] * 100.0
                 reverseData.changeRate = (  finalResult.2[count - 1] - finalResult.2[count - 2]  ) / finalResult.2[count - 1] * 100.0
 
-                data.trend = (finalResult.1[count - 1] - finalResult.1[count - 2]) > 0
+                data.trend = data.changeRate > 0
                 reverseData.trend = !data.trend 
 
                 data.now = finalResult.1[count - 1]
@@ -267,7 +266,9 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             settingButton.heightAnchor.constraint(equalToConstant: 20)
         ])
 
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: settingButton)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: settingButton)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addMore))
+        navigationItem.rightBarButtonItem?.tintColor = .black
         tabBarController?.tabBar.isHidden = false
     }
 
@@ -287,6 +288,12 @@ extension MainViewController {
         let vc = SettingsViewController()
         let navVC = UINavigationController(rootViewController: vc)
         present(navVC, animated: true, completion: nil)
+    }
+
+    @objc func addMore() {
+        let vc = BaseCurrencyViewController()
+        vc.modalPresentationStyle = .overFullScreen
+        present(vc, animated: true, completion: nil)
     }
 }
 

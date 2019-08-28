@@ -17,9 +17,11 @@ class BaseCurrencyViewController: UIViewController {
     let contentTitle = UILabel()
     let pickerView = UIPickerView()
     let confirmButton = UIButton()
+    let toLabel = UILabel()
+    let fromButton = UIButton()
+    let toButton = UIButton()
 
-    let contentHeight = CGFloat(425)
-    let baseCurrencyList = ["USD", "CNY", "HKD", "JPY", "CAD", "EUR"]
+    var contentHeight = CGFloat(525)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +31,7 @@ class BaseCurrencyViewController: UIViewController {
         initContainer()
         initContent()
 
+//        contentHeight = view.bounds.height - 300
         hero.isEnabled = true
         contentContainerView.hero.modifiers = [.opacity(0), .translate(y: contentHeight)]
         maskView.hero.modifiers = [.opacity(0)]
@@ -54,6 +57,7 @@ class BaseCurrencyViewController: UIViewController {
     func initContainer() {
         view.addSubview(contentContainerView)
         contentContainerView.translatesAutoresizingMaskIntoConstraints = false
+
         NSLayoutConstraint.activate([
             contentContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             contentContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -70,40 +74,79 @@ class BaseCurrencyViewController: UIViewController {
             contentView.topAnchor.constraint(equalTo: contentContainerView.topAnchor)
         ])
         contentView.layer.cornerRadius = 20
-        contentView.backgroundColor = UIColor.lightGray
+        contentView.backgroundColor = .background
     }
 
     func initContent() {
         contentView.addSubview(contentTitle)
         contentTitle.translatesAutoresizingMaskIntoConstraints = false
-        contentTitle.text = "Choose your base currency"
-        contentTitle.textColor = UIColor.black
+        contentTitle.text = "I want to convert from ..."
+        contentTitle.textColor = .titleColor
+        contentTitle.font = .somewhatSmallFont
 
-        contentView.addSubview(pickerView)
-        pickerView.translatesAutoresizingMaskIntoConstraints = false
-        pickerView.dataSource = self
-        pickerView.delegate = self
+        contentView.addSubview(toLabel)
+        toLabel.translatesAutoresizingMaskIntoConstraints = false
+        toLabel.text = "to ..."
+        toLabel.textColor = .titleColor
+        toLabel.font = .somewhatSmallFont
+
+        contentView.addSubview(fromButton)
+        fromButton.translatesAutoresizingMaskIntoConstraints = false
+        fromButton.titleLabel?.font = .somewhatSmallFont
+        fromButton.backgroundColor = .white
+        fromButton.layer.cornerRadius = 15
+        fromButton.setImage(#imageLiteral(resourceName: "arrowGray"), for: .normal)
+        fromButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: -80)
+        fromButton.setTitleColor(.titleColor, for: .normal)
+        fromButton.addTarget(self, action: #selector(goToCurrencyPicker), for: .touchUpInside)
+
+
+        contentView.addSubview(toButton)
+        toButton.translatesAutoresizingMaskIntoConstraints = false
+        toButton.titleLabel?.font = .somewhatSmallFont
+        toButton.backgroundColor = .white
+        toButton.layer.cornerRadius = 15
+        toButton.setImage(#imageLiteral(resourceName: "arrowGray"), for: .normal)
+        toButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: -80)
+        toButton.setTitleColor(.titleColor, for: .normal)
 
         contentView.addSubview(confirmButton)
         confirmButton.translatesAutoresizingMaskIntoConstraints = false
         confirmButton.setTitle("Finish", for: .normal)
+        confirmButton.titleLabel?.font = .titleFont
         confirmButton.titleLabel?.textColor = UIColor.white
         confirmButton.titleLabel?.textAlignment = .center
         confirmButton.layer.cornerRadius = 15
-        confirmButton.backgroundColor = UIColor.red
+        confirmButton.backgroundColor = .veryPink
         confirmButton.addTarget(self, action: #selector(confirmButtonPressed), for: .touchUpInside)
 
         NSLayoutConstraint.activate([
             contentTitle.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
             contentTitle.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 25),
-            pickerView.topAnchor.constraint(equalTo: contentTitle.bottomAnchor, constant: -20),
-            pickerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-            pickerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
+            toLabel.topAnchor.constraint(equalTo: contentTitle.bottomAnchor, constant: 120),
+            toLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 25),
+            fromButton.widthAnchor.constraint(equalToConstant: 150),
+            fromButton.heightAnchor.constraint(equalToConstant: 60),
+            fromButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 25),
+            fromButton.bottomAnchor.constraint(equalTo: toLabel.topAnchor, constant: -20),
+            toButton.widthAnchor.constraint(equalToConstant: 150),
+            toButton.heightAnchor.constraint(equalToConstant: 60),
+            toButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 25),
+            toButton.topAnchor.constraint(equalTo: toLabel.bottomAnchor, constant: 20),
+//            pickerView.topAnchor.constraint(equalTo: contentTitle.bottomAnchor, constant: -20),
+//            pickerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+//            pickerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
             confirmButton.widthAnchor.constraint(equalToConstant: 120),
             confirmButton.heightAnchor.constraint(equalToConstant: 50),
             confirmButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
-            confirmButton.topAnchor.constraint(equalTo: pickerView.bottomAnchor, constant: 60)
+            confirmButton.topAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -100)
         ])
+    }
+}
+
+extension BaseCurrencyViewController: CurrencyPickerViewControllerDelegate {
+    func handleConfirmButtonPressed(sender: CurrencyPickerViewController, currency: String) {
+        fromButton.setTitle(currency, for: .normal)
     }
 }
 
@@ -116,32 +159,9 @@ extension BaseCurrencyViewController {
         // save data
         dismissPopup()
     }
-}
 
-extension BaseCurrencyViewController: UIPickerViewDelegate {
-    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-        let rowSize = pickerView.rowSize(forComponent: component)
-        let rowView = view as? BaseCurrencyPickerView ?? BaseCurrencyPickerView(frame: CGRect(origin: CGPoint.zero, size: rowSize))
-        rowView.currencyTitle.text = baseCurrencyList[row]
-
-        return rowView
-    }
-
-    func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
-        return pickerView.bounds.width
-    }
-
-    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
-        return 50
-    }
-}
-
-extension BaseCurrencyViewController: UIPickerViewDataSource {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return baseCurrencyList.count
+    @objc func goToCurrencyPicker() {
+        let vc = CurrencyPickerViewController()
+        present(vc, animated: true, completion: nil)
     }
 }

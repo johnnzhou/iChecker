@@ -25,7 +25,8 @@ class BaseCurrencyPickerView: UIView {
             currencyTitle.trailingAnchor.constraint(equalTo: trailingAnchor)
         ])
 
-        currencyTitle.textColor = UIColor.black
+        currencyTitle.textColor = .titleColor
+        currencyTitle.font = .titleFont
     }
 
     required init?(coder aDecoder: NSCoder) {
