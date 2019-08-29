@@ -9,6 +9,10 @@
 import UIKit
 import Hero
 
+protocol BaseCurrencyViewControllerDelegate {
+    func handleConfirmButtonPressed(sender: BaseCurrencyViewController)
+}
+
 class BaseCurrencyViewController: UIViewController {
 
     let maskView = UIView()
@@ -22,6 +26,8 @@ class BaseCurrencyViewController: UIViewController {
     let toButton = UIButton()
 
     var contentHeight = CGFloat(525)
+
+    var delegate: BaseCurrencyViewControllerDelegate? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,9 +102,9 @@ class BaseCurrencyViewController: UIViewController {
         fromButton.backgroundColor = .white
         fromButton.layer.cornerRadius = 15
         fromButton.setImage(#imageLiteral(resourceName: "arrowGray"), for: .normal)
-        fromButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: -80)
+        fromButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 50, bottom: 0, right: -80)
         fromButton.setTitleColor(.titleColor, for: .normal)
-        fromButton.addTarget(self, action: #selector(goToCurrencyPicker), for: .touchUpInside)
+        fromButton.addTarget(self, action: #selector(goFromCurrencyPicker), for: .touchUpInside)
 
 
         contentView.addSubview(toButton)
@@ -107,8 +113,9 @@ class BaseCurrencyViewController: UIViewController {
         toButton.backgroundColor = .white
         toButton.layer.cornerRadius = 15
         toButton.setImage(#imageLiteral(resourceName: "arrowGray"), for: .normal)
-        toButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: -80)
+        toButton.imageEdgeInsets = UIEdgeInsets(top: 0, left: 50, bottom: 0, right: -80)
         toButton.setTitleColor(.titleColor, for: .normal)
+        toButton.addTarget(self, action: #selector(goToCurrencyPicker), for: .touchUpInside)
 
         contentView.addSubview(confirmButton)
         confirmButton.translatesAutoresizingMaskIntoConstraints = false
@@ -133,9 +140,6 @@ class BaseCurrencyViewController: UIViewController {
             toButton.heightAnchor.constraint(equalToConstant: 60),
             toButton.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 25),
             toButton.topAnchor.constraint(equalTo: toLabel.bottomAnchor, constant: 20),
-//            pickerView.topAnchor.constraint(equalTo: contentTitle.bottomAnchor, constant: -20),
-//            pickerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
-//            pickerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
             confirmButton.widthAnchor.constraint(equalToConstant: 120),
             confirmButton.heightAnchor.constraint(equalToConstant: 50),
             confirmButton.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
@@ -144,9 +148,28 @@ class BaseCurrencyViewController: UIViewController {
     }
 }
 
-extension BaseCurrencyViewController: CurrencyPickerViewControllerDelegate {
-    func handleConfirmButtonPressed(sender: CurrencyPickerViewController, currency: String) {
-        fromButton.setTitle(currency, for: .normal)
+extension BaseCurrencyViewController: CurrencyPickerViewControllerDelegate, ToCurrencyPickerViewControllerDelegate{
+
+    @objc func goFromCurrencyPicker() {
+        let vc = CurrencyPickerViewController()
+        vc.delegate = self
+        vc.hero.modalAnimationType = .fade
+        present(vc, animated: true, completion: nil)
+    }
+
+    @objc func goToCurrencyPicker() {
+        let vc = ToCurrencyPickerViewController()
+        vc.delegate = self
+        vc.hero.modalAnimationType = .fade
+        present(vc, animated: true, completion: nil)
+    }
+
+    func handleConfirmButtonPressed(sender: CurrencyPickerViewController) {
+        fromButton.setTitle(sender.currencyPicked, for: .normal)
+    }
+
+    func handleConfirmButtonPressed(sender: ToCurrencyPickerViewController) {
+        toButton.setTitle(sender.currencyPicked, for: .normal)
     }
 }
 
@@ -157,11 +180,7 @@ extension BaseCurrencyViewController {
 
     @objc func confirmButtonPressed() {
         // save data
+        delegate?.handleConfirmButtonPressed(sender: self)
         dismissPopup()
-    }
-
-    @objc func goToCurrencyPicker() {
-        let vc = CurrencyPickerViewController()
-        present(vc, animated: true, completion: nil)
     }
 }

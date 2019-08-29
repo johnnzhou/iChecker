@@ -1,19 +1,19 @@
 //
-//  CurrencyPickerViewController.swift
+//  ToCurrencyPickerViewController.swift
 //  iChecker
 //
-//  Created by JOHN ZZN on 8/28/19.
+//  Created by JOHN ZZN on 8/29/19.
 //  Copyright © 2019 John Zhou. All rights reserved.
 //
 
 import UIKit
 import Hero
 
-protocol CurrencyPickerViewControllerDelegate {
-    func handleConfirmButtonPressed(sender: CurrencyPickerViewController)
+protocol ToCurrencyPickerViewControllerDelegate {
+    func handleConfirmButtonPressed(sender: ToCurrencyPickerViewController)
 }
 
-class CurrencyPickerViewController: UIViewController {
+class ToCurrencyPickerViewController: UIViewController {
 
     let maskView = UIView()
     let contentContainerView = UIView()
@@ -23,7 +23,7 @@ class CurrencyPickerViewController: UIViewController {
     let confirmButton = UIButton()
     var currencyPicked: String? = nil
 
-    var delegate: CurrencyPickerViewControllerDelegate? = nil
+    var delegate: ToCurrencyPickerViewControllerDelegate? = nil
 
     var contentHeight = CGFloat(525)
     let baseCurrencyList = ["USD", "CNY", "HKD", "JPY", "CAD", "EUR", "BGP"]
@@ -51,7 +51,7 @@ class CurrencyPickerViewController: UIViewController {
             maskView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             maskView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             maskView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        ])
+            ])
 
         maskView.backgroundColor = UIColor.black.withAlphaComponent(0.2)
         let gesture = UITapGestureRecognizer(target: self, action: #selector(dismissPopup))
@@ -105,7 +105,7 @@ class CurrencyPickerViewController: UIViewController {
         confirmButton.titleLabel?.textAlignment = .center
         confirmButton.layer.cornerRadius = 15
         confirmButton.backgroundColor = .veryPink
-        confirmButton.addTarget(self, action: #selector(confirmButtonTapped), for: .touchUpInside)
+        confirmButton.addTarget(self, action: #selector(confirmButtonTapped(_ :)), for: .touchUpInside)
 
         NSLayoutConstraint.activate([
             backButton.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
@@ -121,24 +121,24 @@ class CurrencyPickerViewController: UIViewController {
     }
 }
 
-extension CurrencyPickerViewController {
-    @objc func confirmButtonTapped() {
+extension ToCurrencyPickerViewController {
+    @objc func confirmButtonTapped(_ sender: UIButton) {
         delegate?.handleConfirmButtonPressed(sender: self)
         dismissPopup()
     }
 }
 
-extension CurrencyPickerViewController {
+extension ToCurrencyPickerViewController {
     @objc func dismissPopup() {
         dismiss(animated: true, completion: nil)
     }
 
     @objc func handleBackButtonPressed() {
-        dismissPopup()
+        dismiss(animated: true, completion: nil)
     }
 }
 
-extension CurrencyPickerViewController: UIPickerViewDelegate {
+extension ToCurrencyPickerViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         let rowSize = pickerView.rowSize(forComponent: component)
         let rowView = view as? BaseCurrencyPickerView ?? BaseCurrencyPickerView(frame: CGRect(origin: CGPoint.zero, size: rowSize))
@@ -160,7 +160,7 @@ extension CurrencyPickerViewController: UIPickerViewDelegate {
     }
 }
 
-extension CurrencyPickerViewController: UIPickerViewDataSource {
+extension ToCurrencyPickerViewController: UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -169,3 +169,4 @@ extension CurrencyPickerViewController: UIPickerViewDataSource {
         return baseCurrencyList.count
     }
 }
+

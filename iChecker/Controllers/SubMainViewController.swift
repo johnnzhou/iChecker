@@ -161,6 +161,8 @@ extension SubMainViewController: UICollectionViewDataSource {
             cell.average.text = "Average: " + String(format: "%.2f", exchangeRate.average)
             cell.averageChange.text = "Avg Change: " + String(format: "%.2f", exchangeRate.averageChange)
 
+            cell.shareIcon.addTarget(self, action: #selector(displayShareSheet), for: .allTouchEvents)
+
             return cell
         case .graph:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(GraphViewCell.self)", for: indexPath) as! GraphViewCell
@@ -232,5 +234,12 @@ extension SubMainViewController: GraphViewCellDelegate {
         }
         print(dayRange)
         self.collectionView.reloadData()
+    }
+}
+
+extension SubMainViewController {
+    @objc func displayShareSheet() {
+        let activityViewController = UIActivityViewController(activityItems: ["yes" as NSString], applicationActivities: nil)
+        present(activityViewController, animated: true, completion: nil)
     }
 }

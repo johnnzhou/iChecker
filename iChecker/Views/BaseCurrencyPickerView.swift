@@ -26,7 +26,7 @@ class BaseCurrencyPickerView: UIView {
         ])
 
         currencyTitle.textColor = .titleColor
-        currencyTitle.font = .titleFont
+        currencyTitle.font = .somewhatSmallFont
     }
 
     required init?(coder aDecoder: NSCoder) {

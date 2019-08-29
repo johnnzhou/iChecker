@@ -292,8 +292,30 @@ extension MainViewController {
 
     @objc func addMore() {
         let vc = BaseCurrencyViewController()
+        vc.delegate = self
         vc.modalPresentationStyle = .overFullScreen
         present(vc, animated: true, completion: nil)
+    }
+}
+
+extension MainViewController: BaseCurrencyViewControllerDelegate {
+    func handleConfirmButtonPressed(sender: BaseCurrencyViewController) {
+        guard let base = sender.fromButton.titleLabel?.text else {
+            return
+        }
+        guard let symbol = sender.toButton.titleLabel?.text else {
+            return 
+        }
+
+        let baseSymbol = "\(base)-\(symbol)"
+        guard let keys = UserDefaults.standard.array(forKey: "pairs") else {
+            fatalError("Unable to retrieve plist info")
+        }
+        pairs = keys as! [String]
+        pairs.append(baseSymbol)
+        UserDefaults.standard.set(pairs, forKey: "pairs")
+        currencyTableView.reloadData()
+
     }
 }
 

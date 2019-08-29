@@ -46,7 +46,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PQr-Ze-W5v"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Currencies" largeTitleDisplayMode="always" id="WOx-zJ-Cuy"/>
+                    <navigationItem key="navigationItem" title="Currencies" id="WOx-zJ-Cuy"/>
                     <connections>
                         <outlet property="currencyTableView" destination="7WW-is-azv" id="F1h-q2-TxH"/>
                     </connections>

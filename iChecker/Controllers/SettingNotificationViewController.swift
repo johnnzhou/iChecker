@@ -33,9 +33,10 @@ class SettingNotificationViewController: UITableViewController {
 
 
     override func viewDidLoad() {
-        navigationItem.largeTitleDisplayMode = .never
-        navigationItem.title = "Notification"
         super.viewDidLoad()
+
+        navigationController?.navigationBar.prefersLargeTitles = false
+        navigationItem.title = "Notification"
 
         dateformatter.dateFormat = "HH:mm"
         self.tableView = UITableView(frame: CGRect.zero, style: .grouped)

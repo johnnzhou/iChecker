@@ -99,7 +99,7 @@ class HistoricalDataViewCell: UICollectionViewCell {
             shareContainer.topAnchor.constraint(equalTo: trendContainer.bottomAnchor, constant: 20),
             shareContainer.leadingAnchor.constraint(equalTo: mainContainer.trailingAnchor, constant: 20),
             shareContainer.widthAnchor.constraint(equalToConstant: 118),
-            shareContainer.heightAnchor.constraint(equalToConstant: 40),
+            shareContainer.heightAnchor.constraint(equalToConstant: 50),
             shareContainer.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20),
             historicalDataContainer.topAnchor.constraint(equalTo: mainContainer.bottomAnchor, constant: 50),
             historicalDataContainer.heightAnchor.constraint(equalToConstant: 150),
@@ -166,7 +166,7 @@ class HistoricalDataViewCell: UICollectionViewCell {
     func initShare() {
         shareContainer.addSubview(shareIcon)
         shareIcon.translatesAutoresizingMaskIntoConstraints = false
-        let iconImage = UIImage(named: "settings")?.withRenderingMode(.alwaysOriginal)
+        let iconImage = UIImage(named: "share")?.withRenderingMode(.alwaysOriginal)
         shareIcon.setBackgroundImage(iconImage, for: .normal)
         shareContainer.addSubview(shareLabel)
         shareLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -174,13 +174,11 @@ class HistoricalDataViewCell: UICollectionViewCell {
         shareLabel.textColor = .titleColor
         shareLabel.font = .titleFont
 
-
-
         NSLayoutConstraint.activate([
-            shareIcon.centerYAnchor.constraint(equalTo: shareContainer.centerYAnchor),
-            shareIcon.centerXAnchor.constraint(equalTo: shareContainer.centerXAnchor, constant: -20),
-            shareIcon.widthAnchor.constraint(equalToConstant: 20),
-            shareIcon.heightAnchor.constraint(equalToConstant: 20),
+            shareIcon.centerYAnchor.constraint(equalTo: shareContainer.centerYAnchor, constant: -3),
+            shareIcon.centerXAnchor.constraint(equalTo: shareContainer.centerXAnchor, constant: -30),
+            shareIcon.widthAnchor.constraint(equalToConstant: 24),
+            shareIcon.heightAnchor.constraint(equalToConstant: 28),
             shareLabel.leadingAnchor.constraint(equalTo: shareIcon.trailingAnchor, constant: 10),
             shareLabel.centerYAnchor.constraint(equalTo: shareContainer.centerYAnchor)
         ])
