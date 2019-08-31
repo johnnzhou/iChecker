@@ -7,8 +7,7 @@
 //
 
 import UIKit
-import SwipeCellKit
 
-class GeneralSettingViewCell: SwipeTableViewCell {
+class GeneralSettingViewCell: UITableViewCell {
 
 }

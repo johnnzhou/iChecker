@@ -59,8 +59,7 @@ public enum CountryName: String, CaseIterable {
 
 class Country: Object {
     @objc dynamic var abbreName: String = ""
-
-
+    
     public var flag: String {
         return CountryName(rawValue: abbreName)!.flagString
     }

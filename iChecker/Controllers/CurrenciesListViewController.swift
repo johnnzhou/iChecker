@@ -26,7 +26,8 @@ class CurrenciesListViewController: UITableViewController {
 
         self.tableView.isEditing = true
 //        self.tableView = UITableView(frame: CGRect.zero, style: .grouped)
-        self.tableView.register(GeneralSettingViewCell.self, forCellReuseIdentifier: "\(GeneralSettingViewCell.self)")
+//        self.tableView.frame.height = CGFloat(pairs.count * 60)
+        self.tableView.register(GeneralSettingViewCell.self, forCellReuseIdentifier: "GeneralSettingViewCell")
     }
 }
 
@@ -57,9 +58,16 @@ extension CurrenciesListViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "GeneralSettingViewCell", for: indexPath) as! GeneralSettingViewCell
+        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "GeneralSettingViewCell")
         cell.textLabel?.text = pairs[indexPath.row]
-//        cell.delegate = self
+        let pair = pairs[indexPath.row].split(separator: "-")
+        let baseCountry = Country()
+        let symbolCountry = Country()
+        baseCountry.abbreName = String(pair[0])
+        symbolCountry.abbreName = String(pair[1])
+        cell.detailTextLabel?.text = "\(baseCountry.fullName) - \(symbolCountry.fullName)"
+
+            //        cell.delegate = self
         cell.selectionStyle = .none
         return cell
     }
@@ -71,17 +79,20 @@ extension CurrenciesListViewController {
         userDefaults.set(pairs, forKey: "pairs")
     }
 
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
+    }
+
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if let index = self.pairs.firstIndex(of: self.pairs[indexPath.row]) {
             self.pairs.remove(at: index)
             self.userDefaults.set(self.pairs, forKey: "pairs")
             tableView.deleteRows(at: [indexPath], with: .automatic)
         }
-
     }
 
-    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        return .delete
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
