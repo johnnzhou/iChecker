@@ -12,4 +12,5 @@ target 'iChecker' do
     pod 'SwiftyJSON'
     pod 'PromiseKit/Alamofire'
     pod 'SVProgressHUD'
+    pod 'SwipeCellKit'
 end

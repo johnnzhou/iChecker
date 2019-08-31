@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol MainViewCellDelegate {
+    func deleteCell(sender: MainViewCell)
+}
+
 class MainViewCell: UITableViewCell {
 
     let containerView = UIView()
@@ -19,10 +23,12 @@ class MainViewCell: UITableViewCell {
     let rate = UILabel()
     let high = UILabel()
     let low = UILabel()
-//    let info = UIButton()
+    let delete = UIButton()
     let trendArrow = UIImageView()
 
     let trend: Bool = true
+
+    var delegate: MainViewCellDelegate? = nil
 
     let numberAttribute = [
         NSAttributedString.Key.foregroundColor : UIColor.cyan,
@@ -40,6 +46,7 @@ class MainViewCell: UITableViewCell {
         initContainer()
         initContent()
     }
+
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -77,7 +84,7 @@ class MainViewCell: UITableViewCell {
         content.layer.cornerRadius = 10
         content.layer.shadowColor = UIColor.gray.cgColor
         content.layer.shadowOffset = CGSize.zero
-        content.layer.shadowOpacity = 0.5
+        content.layer.shadowOpacity = 0.3
         content.layer.shadowRadius = 5.0
         content.layer.masksToBounds = false
 
@@ -110,10 +117,10 @@ class MainViewCell: UITableViewCell {
         low.textColor = .veryBlue
         low.font = .smallTitleFont
 
-//        content.addSubview(info)
-//        info.translatesAutoresizingMaskIntoConstraints = false
-//        info.setImage(#imageLiteral(resourceName: "info"), for: .normal)
-//        info.addTarget(self, action: #selector(handleInfoButtonPressed(_:)), for: .touchUpInside)
+        content.addSubview(delete)
+        delete.translatesAutoresizingMaskIntoConstraints = false
+//        delete.setImage(#imageLiteral(resourceName: "cancel"), for: .normal)
+//        delete.addTarget(self, action: #selector(handleDeleteTapped(_:)), for: .touchUpInside)
 
         content.addSubview(trendArrow)
         trendArrow.translatesAutoresizingMaskIntoConstraints = false
@@ -141,10 +148,10 @@ class MainViewCell: UITableViewCell {
             high.topAnchor.constraint(equalTo: content.bottomAnchor, constant: -30),
             low.leadingAnchor.constraint(equalTo: high.trailingAnchor, constant: 20),
             low.topAnchor.constraint(equalTo: content.bottomAnchor, constant: -30),
-//            info.widthAnchor.constraint(equalToConstant: 36),
-//            info.heightAnchor.constraint(equalToConstant: 36),
-//            info.centerYAnchor.constraint(equalTo: content.centerYAnchor),
-//            info.trailingAnchor.constraint(equalTo: content.trailingAnchor, constant: -10),
+            delete.widthAnchor.constraint(equalToConstant: 24),
+            delete.heightAnchor.constraint(equalToConstant: 24),
+            delete.centerYAnchor.constraint(equalTo: content.centerYAnchor, constant: -60),
+            delete.trailingAnchor.constraint(equalTo: content.trailingAnchor, constant: 5),
             trendArrow.leadingAnchor.constraint(equalTo: rate.trailingAnchor, constant: 15),
             trendArrow.topAnchor.constraint(equalTo: content.topAnchor, constant: 40)
         ])
@@ -152,7 +159,8 @@ class MainViewCell: UITableViewCell {
 }
 
 //extension MainViewCell {
-//    @objc func handleInfoButtonPressed(_ sender: UIButton) {
-//        delegate?.handleInfoButtonPressed(sender: self)
+//    @objc func handleDeleteTapped(_ sender: UIButton) {
+//        UserDefaults.standard.set(false, forKey: "delete")
+//        delegate?.deleteCell(sender: self)
 //    }
 //}

@@ -13,7 +13,7 @@ import PromiseKit
 import SwiftyJSON
 import SVProgressHUD
 
-class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UNUserNotificationCenterDelegate {
+class MainViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UNUserNotificationCenterDelegate, UIGestureRecognizerDelegate {
     @IBOutlet weak var currencyTableView: UITableView!
 
     let realm = try! Realm()
@@ -193,6 +193,12 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
         }
 
+//        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPress))
+//        longPressRecognizer.minimumPressDuration = 1.5
+//        longPressRecognizer.delegate = self
+//        longPressRecognizer.delaysTouchesBegan = true
+//        currencyTableView.addGestureRecognizer(longPressRecognizer)
+
         currencyTableView.delegate = self
         currencyTableView.dataSource = self
         currencyTableView.register(MainViewCell.self, forCellReuseIdentifier: "\(MainViewCell.self)")
@@ -315,7 +321,6 @@ extension MainViewController: BaseCurrencyViewControllerDelegate {
         pairs.append(baseSymbol)
         UserDefaults.standard.set(pairs, forKey: "pairs")
         currencyTableView.reloadData()
-
     }
 }
 
@@ -331,7 +336,6 @@ extension MainViewController {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = currencyTableView.dequeueReusableCell(withIdentifier: "MainViewCell", for: indexPath) as! MainViewCell
-
         cell.translatesAutoresizingMaskIntoConstraints = false
 
         guard let keys = UserDefaults.standard.array(forKey: "pairs") else {

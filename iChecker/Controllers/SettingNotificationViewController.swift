@@ -52,7 +52,7 @@ class SettingNotificationViewController: UITableViewController {
         self.schedule.updateValue(schedule["15:00"] ?? false, forKey: "15:00")
         self.schedule.updateValue(schedule["18:00"] ?? false, forKey: "18:00")
 
-        self.tableView.register(SettingNotificationViewCell.self, forCellReuseIdentifier: "\(SettingNotificationViewCell.self)")
+        self.tableView.register(GeneralSettingViewCell.self, forCellReuseIdentifier: "\(GeneralSettingViewCell.self)")
     }
 }
 
@@ -79,7 +79,7 @@ extension SettingNotificationViewController {
         guard let sec = NotificationSection(rawValue: indexPath.section) else {
             fatalError("Unknown Setion or Row: setion:\(indexPath.section), row: \(indexPath.row)")
         }
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SettingNotificationViewCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GeneralSettingViewCell", for: indexPath)
         switch sec {
         case .notification:
             cell.textLabel?.text = "Nofitication"

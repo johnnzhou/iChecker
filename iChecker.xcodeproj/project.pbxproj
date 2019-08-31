@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0410A80422F6884F00678085 /* SettingNotificationViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0410A80322F6884F00678085 /* SettingNotificationViewCell.swift */; };
+		0410A80422F6884F00678085 /* GeneralSettingViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0410A80322F6884F00678085 /* GeneralSettingViewCell.swift */; };
 		0410A80622F688C600678085 /* SettingNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0410A80522F688C600678085 /* SettingNotificationViewController.swift */; };
 		0410A80822F696B700678085 /* NotificationTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0410A80722F696B700678085 /* NotificationTime.swift */; };
 		0410A80A22F6B30D00678085 /* ExpandableTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0410A80922F6B30D00678085 /* ExpandableTime.swift */; };
+		04195DD3231A040F008ACBFE /* CurrenciesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04195DD2231A040F008ACBFE /* CurrenciesListViewController.swift */; };
 		0432420522F57F5600EF097B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0432420422F57F5600EF097B /* AppDelegate.swift */; };
 		0432420C22F57F5600EF097B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0432420A22F57F5600EF097B /* Main.storyboard */; };
 		0432420E22F57F5600EF097B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0432420D22F57F5600EF097B /* Assets.xcassets */; };
@@ -55,10 +56,11 @@
 /* End PBXBuildRule section */
 
 /* Begin PBXFileReference section */
-		0410A80322F6884F00678085 /* SettingNotificationViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingNotificationViewCell.swift; sourceTree = "<group>"; };
+		0410A80322F6884F00678085 /* GeneralSettingViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingViewCell.swift; sourceTree = "<group>"; };
 		0410A80522F688C600678085 /* SettingNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingNotificationViewController.swift; sourceTree = "<group>"; };
 		0410A80722F696B700678085 /* NotificationTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTime.swift; sourceTree = "<group>"; };
 		0410A80922F6B30D00678085 /* ExpandableTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableTime.swift; sourceTree = "<group>"; };
+		04195DD2231A040F008ACBFE /* CurrenciesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrenciesListViewController.swift; sourceTree = "<group>"; };
 		0432420122F57F5600EF097B /* iChecker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iChecker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0432420422F57F5600EF097B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0432420B22F57F5600EF097B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -154,7 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				0432422622F5CBB900EF097B /* settingsViewCell.swift */,
-				0410A80322F6884F00678085 /* SettingNotificationViewCell.swift */,
+				0410A80322F6884F00678085 /* GeneralSettingViewCell.swift */,
 				04CCBC2C2300089700675350 /* BaseCurrencyPickerView.swift */,
 				04CCBC392300685100675350 /* CalculatorCurrenciesViewCell.swift */,
 				0458BCC72303C783009540FF /* MainViewCell.swift */,
@@ -179,6 +181,7 @@
 				0451102E2307DFB9005E8A75 /* SubMainViewController.swift */,
 				048AAEB32316B6EF006BBFB7 /* CurrencyPickerViewController.swift */,
 				048AAEB7231770D3006BBFB7 /* ToCurrencyPickerViewController.swift */,
+				04195DD2231A040F008ACBFE /* CurrenciesListViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -341,6 +344,7 @@
 				0432420522F57F5600EF097B /* AppDelegate.swift in Sources */,
 				04CCBC3A2300685100675350 /* CalculatorCurrenciesViewCell.swift in Sources */,
 				0432421F22F5800300EF097B /* CalculatorViewController.swift in Sources */,
+				04195DD3231A040F008ACBFE /* CurrenciesListViewController.swift in Sources */,
 				04CCBC312300477E00675350 /* AboutViewController.swift in Sources */,
 				0474D695230CF3CA009DBA35 /* ExchangeRate.swift in Sources */,
 				04CCBC2D2300089700675350 /* BaseCurrencyPickerView.swift in Sources */,
@@ -348,7 +352,7 @@
 				046ACC77231018F900E27EA7 /* UIColor+iChecker.swift in Sources */,
 				045F6C3A22F9C5FB00FAC30E /* BaseCurrencyViewController.swift in Sources */,
 				04FBE4222307F85800F44CEA /* GraphViewCell.swift in Sources */,
-				0410A80422F6884F00678085 /* SettingNotificationViewCell.swift in Sources */,
+				0410A80422F6884F00678085 /* GeneralSettingViewCell.swift in Sources */,
 				04FDD82E230BA3830001A71F /* Country.swift in Sources */,
 				0432422722F5CBB900EF097B /* settingsViewCell.swift in Sources */,
 				0458BCC82303C783009540FF /* MainViewCell.swift in Sources */,

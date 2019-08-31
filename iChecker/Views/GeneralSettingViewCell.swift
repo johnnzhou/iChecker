@@ -1,5 +1,5 @@
 //
-//  SettingNotificationViewCell.swift
+//  GeneralSettingViewCell.swift
 //  iChecker
 //
 //  Created by JOHN ZZN on 8/4/19.
@@ -7,7 +7,8 @@
 //
 
 import UIKit
+import SwipeCellKit
 
-class SettingNotificationViewCell: UITableViewCell {
+class GeneralSettingViewCell: SwipeTableViewCell {
 
 }

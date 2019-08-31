@@ -40,14 +40,14 @@ enum About: Int, CaseIterable {
 
 enum General: Int, CaseIterable {
     case Notification = 0
-//    case BaseCurrency
+    case Currencies
 
     public var generalString: String {
         switch self {
         case .Notification:
             return "Notification"
-//        case .BaseCurrency:
-//            return "Base Currency"
+        case .Currencies:
+            return "Currencies"
         }
     }
 }
@@ -72,7 +72,7 @@ class SettingsViewController: UITableViewController {
     }
 
     func initNavigation() {
-        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.prefersLargeTitles = false
         navigationItem.title = "Preferenecs"
     }
 
@@ -105,7 +105,8 @@ extension SettingsViewController {
         guard let sec = Section(rawValue: indexPath.section) else {
             fatalError("Unknow Section \(indexPath.section)")
         }
-        let cell = tableView.dequeueReusableCell(withIdentifier: "settingsViewCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "settingsViewCell", for: indexPath) as! settingsViewCell
+
         switch  sec {
         case .general:
             cell.textLabel?.text = General(rawValue: indexPath.row)?.generalString
@@ -156,10 +157,9 @@ extension SettingsViewController {
             case .Notification:
                 let vc = SettingNotificationViewController()
                 navigationController?.pushViewController(vc, animated: true)
-//            case .BaseCurrency:
-//                let vc = BaseCurrencyViewController()
-//                vc.modalPresentationStyle = .overFullScreen
-//                present(vc, animated: true, completion: nil)
+            case .Currencies:
+                let vc = CurrenciesListViewController()
+                navigationController?.pushViewController(vc, animated: true)
             }
 
         case .about:
