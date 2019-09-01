@@ -27,7 +27,8 @@ class CurrenciesListViewController: UITableViewController {
         self.tableView.isEditing = true
 //        self.tableView = UITableView(frame: CGRect.zero, style: .grouped)
 //        self.tableView.frame.height = CGFloat(pairs.count * 60)
-        self.tableView.register(GeneralSettingViewCell.self, forCellReuseIdentifier: "GeneralSettingViewCell")
+        self.tableView.tableFooterView = UIView(frame: .zero)
+//        self.tableView.register(GeneralSettingViewCell.self, forCellReuseIdentifier: "GeneralSettingViewCell")
     }
 }
 
@@ -69,6 +70,7 @@ extension CurrenciesListViewController {
 
             //        cell.delegate = self
         cell.selectionStyle = .none
+
         return cell
     }
 
@@ -93,6 +95,13 @@ extension CurrenciesListViewController {
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
+    }
+
+    func configureTableView() {
+        func configerTableView() {
+            self.tableView.rowHeight = UITableView.automaticDimension
+            self.tableView.estimatedRowHeight = CGFloat(pairs.count * 60)
+        }
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

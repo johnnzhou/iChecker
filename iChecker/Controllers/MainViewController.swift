@@ -163,6 +163,7 @@ class MainViewController: UIViewController, UITableViewDataSource, UITableViewDe
             userDefaults.setValue(["CAD", "CNY", "EUR", "JPY", "HKD", "USD", "GBP"], forKey: "currencies")
             userDefaults.setValue(["USD-CNY", "CNY-HKD", "CNY-JPY", "USD-EUR", "USD-GBP", "USD-JPY"], forKey: "pairs")
             userDefaults.set(["9:00":true, "12:00":false, "15:00":false, "18:00":false, "isExpanded":false], forKey: "schedule")
+            userDefaults.set("USD", forKey: "baseInConverter")
             return false
         }
     }
