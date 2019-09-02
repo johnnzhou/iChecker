@@ -117,7 +117,7 @@ class CalculatorViewController: UIViewController {
         baseTextField.translatesAutoresizingMaskIntoConstraints = false
         baseTextField.placeholder = "100"
         baseTextField.textAlignment = .right
-        baseTextField.font = .mediumRateFont
+        baseTextField.font = .someMediumRateFont
 
         NSLayoutConstraint.activate([
             baseFlag.centerYAnchor.constraint(equalTo: baseContainer.centerYAnchor),
@@ -132,7 +132,7 @@ class CalculatorViewController: UIViewController {
             baseTextField.leadingAnchor.constraint(equalTo: baseName.trailingAnchor),
             baseDetailName.topAnchor.constraint(equalTo: baseTextField.bottomAnchor, constant: 0),
             baseDetailName.trailingAnchor.constraint(equalTo: baseContainer.trailingAnchor, constant: -15),
-            baseDetailName.leadingAnchor.constraint(equalTo: baseContainer.trailingAnchor, constant: -120)
+            baseDetailName.leadingAnchor.constraint(equalTo: baseContainer.trailingAnchor, constant: -140)
         ])
 
     }
@@ -188,8 +188,8 @@ extension CalculatorViewController: UITableViewDataSource {
         cell.textLabel?.text = rate.symbol?.abbreName
         cell.imageView?.image = rate.symbol?.flag.image()
         cell.selectionStyle = .none
-        let num = Double(baseTextField.text!) ?? 100.0
-        cell.detailTextLabel?.text = String(format: "%.2f", rate.now * num / 100.0)
+        let num = Double(tempTextField) ?? 100.0
+        cell.detailTextLabel?.text = decimalFormatter(string: String(format: "%.2f", rate.now * num / 100.0))
         return cell
     }
 
@@ -221,15 +221,17 @@ extension CalculatorViewController: UITextFieldDelegate {
                 text.remove(at: text.startIndex)
             }
         }
-        baseTextField.text = text
+        tempTextField = text.filter { $0 != "," }
+        baseTextField.text = decimalFormatter(string: tempTextField)
+
+
         UIView.animate(withDuration: 0.5) {
             self.tableView.reloadData()
         }
     }
 
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-
-        let characterCountLimit = 11
+        let characterCountLimit = 14
 
         // We need to figure out how many characters would be in the string after the change happens
         let startingLength = textField.text?.count ?? 0
@@ -237,8 +239,18 @@ extension CalculatorViewController: UITextFieldDelegate {
         let lengthToReplace = range.length
 
         let newLength = startingLength + lengthToAdd - lengthToReplace
-
         return newLength <= characterCountLimit
+    }
+
+    func decimalFormatter(string: String) -> String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        var result = String()
+        if let number = Double(string) {
+            let num = NSNumber(value: number)
+            result = formatter.string(from: num)!
+        }
+        return result
     }
 
 }
