@@ -19,24 +19,41 @@ class CalculatorViewController: UIViewController {
     let baseFlag = UIButton()
     let baseTextField = UITextField()
     let baseName = UIButton()
-    let baseDetailName = UIButton()
+    let baseDetailName = UILabel()
 
     var currencies = [String]()
     var baseInConverter = String()
-
+    var tempTextField = String()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        currencies = UserDefaults.standard.array(forKey: "currencies") as! [String]
+
         baseInConverter = UserDefaults.standard.string(forKey: "baseInConverter")!
+        self.tableView.tableFooterView = UIView(frame: .zero)
+
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(dismissTextField))
+        baseContainer.addGestureRecognizer(gesture)
+        tableView.addGestureRecognizer(gesture)
+
+        initData(baseInConverter: baseInConverter)
+        initTextField()
+        initContainer()
+        initContent()
+    }
+
+    func initData(baseInConverter: String) {
+        currencies = UserDefaults.standard.array(forKey: "currencies") as! [String]
         data = realm.objects(ExchangeRate.self).filter("baseSymbol BEGINSWITH %@", baseInConverter)
         if let index = currencies.firstIndex(of: baseInConverter) {
             currencies.remove(at: index)
         }
-        self.tableView.tableFooterView = UIView(frame: .zero)
-        initContainer()
-        initContent()
+    }
+
+    func initTextField() {
+        baseTextField.delegate = self
+        baseTextField.keyboardType = .decimalPad
+        baseTextField.addTarget(self, action: #selector(editChanged(_:)), for: .editingChanged)
     }
 
     func initContainer() {
@@ -91,9 +108,10 @@ class CalculatorViewController: UIViewController {
 
         baseContainer.addSubview(baseDetailName)
         baseDetailName.translatesAutoresizingMaskIntoConstraints = false
-        baseDetailName.setTitle(country.fullName, for: .normal)
-        baseDetailName.titleLabel?.font = .exSmallTitleFont
-        baseDetailName.setTitleColor(.someGray, for: .normal)
+        baseDetailName.text = country.fullName
+        baseDetailName.font = .exSmallTitleFont
+        baseDetailName.textAlignment = .right
+        baseDetailName.textColor = .someGray
 
         baseContainer.addSubview(baseTextField)
         baseTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -114,6 +132,7 @@ class CalculatorViewController: UIViewController {
             baseTextField.leadingAnchor.constraint(equalTo: baseName.trailingAnchor),
             baseDetailName.topAnchor.constraint(equalTo: baseTextField.bottomAnchor, constant: 0),
             baseDetailName.trailingAnchor.constraint(equalTo: baseContainer.trailingAnchor, constant: -15),
+            baseDetailName.leadingAnchor.constraint(equalTo: baseContainer.trailingAnchor, constant: -120)
         ])
 
     }
@@ -131,7 +150,8 @@ extension CalculatorViewController {
 
                 self.baseFlag.setImage(country.flag.image(), for: .normal)
                 self.baseName.setTitle(currency, for: .normal)
-                self.baseDetailName.titleLabel?.text = country.fullName
+                self.baseDetailName.text = country.fullName
+                self.initData(baseInConverter: currency)
                 UserDefaults.standard.set(currency, forKey: "baseInConverter")
                 self.tableView.reloadData()
             }
@@ -168,7 +188,8 @@ extension CalculatorViewController: UITableViewDataSource {
         cell.textLabel?.text = rate.symbol?.abbreName
         cell.imageView?.image = rate.symbol?.flag.image()
         cell.selectionStyle = .none
-        cell.detailTextLabel?.text = String(format: "%.2f", rate.now)
+        let num = Double(baseTextField.text!) ?? 100.0
+        cell.detailTextLabel?.text = String(format: "%.2f", rate.now * num / 100.0)
         return cell
     }
 
@@ -178,6 +199,47 @@ extension CalculatorViewController: UITableViewDataSource {
 }
 
 extension CalculatorViewController: UITableViewDelegate {
+
+}
+
+extension CalculatorViewController {
+    @objc func dismissTextField() {
+        baseTextField.endEditing(true)
+    }
+}
+
+extension CalculatorViewController: UITextFieldDelegate {
+
+    @objc func editChanged(_ sender: UITextField) {
+
+        guard var text = sender.text else {
+            return
+        }
+
+        if text.starts(with: "0") && !text.contains(".") {
+            if text.count > 1 {
+                text.remove(at: text.startIndex)
+            }
+        }
+        baseTextField.text = text
+        UIView.animate(withDuration: 0.5) {
+            self.tableView.reloadData()
+        }
+    }
+
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+
+        let characterCountLimit = 11
+
+        // We need to figure out how many characters would be in the string after the change happens
+        let startingLength = textField.text?.count ?? 0
+        let lengthToAdd = string.count
+        let lengthToReplace = range.length
+
+        let newLength = startingLength + lengthToAdd - lengthToReplace
+
+        return newLength <= characterCountLimit
+    }
 
 }
 
