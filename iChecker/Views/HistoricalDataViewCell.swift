@@ -167,6 +167,11 @@ class HistoricalDataViewCell: UICollectionViewCell {
         shareContainer.addSubview(shareIcon)
         shareIcon.translatesAutoresizingMaskIntoConstraints = false
         let iconImage = UIImage(named: "share")?.withRenderingMode(.alwaysOriginal)
+//        if #available(iOS 13.0, *) {
+//            iconImage = UIImage(systemName: "square.and.arrow.up") ??
+//        } else {
+//            iconImage = UIImage(named: "share")?.withRenderingMode(.alwaysOriginal)
+//        }
         shareIcon.setBackgroundImage(iconImage, for: .normal)
         shareContainer.addSubview(shareLabel)
         shareLabel.translatesAutoresizingMaskIntoConstraints = false
